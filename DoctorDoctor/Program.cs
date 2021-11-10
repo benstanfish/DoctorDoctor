@@ -13,7 +13,8 @@ namespace DoctorDoctor
         }
     }
 
-    //Version 0 TODO List
+    //Version 0 TODO List:
+    //----------------------------------
     //TODO: File Dialog Function
     //TODO: Consume and verify XML file
     //TODO: Create Evaluation Class
@@ -21,5 +22,7 @@ namespace DoctorDoctor
     //TODO: Create ProjNet Class
     //TODO: Create DrChecks Class
     //TODO: Create Comment Class
-
+    //TODO: Process XML to move Evaluation and Backcheck iterators inside objects before deserialization
+    //TODO: Serialize and deserialize XML
+    //----------------------------------
 }

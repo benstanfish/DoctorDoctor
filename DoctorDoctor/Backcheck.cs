@@ -8,6 +8,7 @@ namespace DoctorDoctor
 {
     internal class Backcheck
     {
+        public int iteration { get; set; }              // Corresponds to backcheck1, backcheck2, etc., in original XML
         public int id { get; set; }
         public int comment { get; set; }    // Corresponding Comment ID
         public int evaluation { get; set; } // corresponding Evaluation ID
@@ -20,6 +21,7 @@ namespace DoctorDoctor
         public Backcheck()
         {
             //TODO: Determine if Backcheck default ctor should be error constructor, or used for typical import
+            iteration = 0;
             id = -1;
             comment = -1;
             evaluation = -1;

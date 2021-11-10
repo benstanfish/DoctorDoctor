@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DoctorDoctor
 {
-    public static class ResourceGetter
+    public static class FileProcessingTools
     {
        
 

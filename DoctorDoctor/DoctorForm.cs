@@ -9,7 +9,8 @@ namespace DoctorDoctor
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string myPath = ResourceGetter.GetFilePath();
+            //TODO: This button is a test method.
+            string myPath = FileProcessingTools.GetFilePath();
             MessageBox.Show(myPath);
         }
     }

@@ -1,8 +1,8 @@
 namespace DoctorDoctor
 {
-    public partial class Form1 : Form
+    public partial class DoctorForm : Form
     {
-        public Form1()
+        public DoctorForm()
         {
             InitializeComponent();
         }

@@ -1,6 +1,6 @@
 ﻿namespace DoctorDoctor
 {
-    partial class Form1
+    partial class DoctorForm
     {
         /// <summary>
         ///  Required designer variable.

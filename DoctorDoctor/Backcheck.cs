@@ -19,7 +19,7 @@ namespace DoctorDoctor
 
         public Backcheck()
         {
-            //TODO: Determine if Evaluation default ctor should be error constructor, or used for typical import
+            //TODO: Determine if Backcheck default ctor should be error constructor, or used for typical import
             id = -1;
             comment = -1;
             evaluation = -1;
@@ -29,5 +29,7 @@ namespace DoctorDoctor
             createdBy = "none";
             createdOn = DateTime.Now;
         }
+
+        //TODO: Create additional ctors
     }
 }

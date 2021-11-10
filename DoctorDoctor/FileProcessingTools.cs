@@ -29,6 +29,10 @@ namespace DoctorDoctor
             return filePath;
         }
 
+        public static void  ConsumeFile(string filePath)
+        {
+            string fileText = File.ReadAllText(filePath);
+        }
 
     }
 

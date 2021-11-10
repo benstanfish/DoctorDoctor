@@ -12,4 +12,14 @@ namespace DoctorDoctor
             Application.Run(new DoctorForm());
         }
     }
+
+    //Version 0 TODO List
+    //TODO: File Dialog Function
+    //TODO: Consume and verify XML file
+    //TODO: Create Evaluation Class
+    //TODO: Create Backcheck Class
+    //TODO: Create ProjNet Class
+    //TODO: Create DrChecks Class
+    //TODO: Create Comment Class
+
 }

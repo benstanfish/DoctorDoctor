@@ -62,15 +62,15 @@ namespace DoctorDoctor
             string closeTestWithNumbers = @"\</(" + searchWord + @"\d+)\>";
             string numbers = @"\d+";
             string insideEvaluation = @"<evaluation>\d+</evaluation>";
-            string findIteration = @"<" + searchWord + @">\s+?\n?\t+?<iteration>\s+?\n?\t+?<id>";
-            string findCommentType = @"<" + searchWord + @">\s+?\n?\t+?<iteration>\s+?\n?\t+?<commentType>\s+?\n?\t+?<id>";
+            //string findIteration = @"<" + searchWord + @">\s+?\n?\t+?<iteration>\s+?\n?\t+?<id>";
+            //string findCommentType = @"<" + searchWord + @">\s+?\n?\t+?<iteration>\s+?\n?\t+?<commentType>\s+?\n?\t+?<id>";
 
             Regex rxOpen = new Regex(openTest);
             Regex rxOpenNum = new Regex(openTestWithNumbers);
             Regex rxCloseNum = new Regex(closeTestWithNumbers);
             Regex rxIsInsideEval = new Regex(insideEvaluation);
-            Regex rxFindIteration = new Regex(findIteration);
-            Regex rxFindCommentType = new Regex(findCommentType);
+            //Regex rxFindIteration = new Regex(findIteration);
+            //Regex rxFindCommentType = new Regex(findCommentType);
 
             int times = 8;
             if (searchWord == "evaluation")
@@ -81,10 +81,10 @@ namespace DoctorDoctor
 
             for (int i = 0; i < lines.Length; i++)
             {
-                if (rxFindIteration.IsMatch(lines[i]) | rxFindCommentType.IsMatch(lines[i]))
-                {
-                    Debug.WriteLine("Alright Here");
-                }
+                //if (rxFindIteration.IsMatch(lines[i]) | rxFindCommentType.IsMatch(lines[i]))
+                //{
+                //    Debug.WriteLine("Alright Here");
+                //}
                 else if (rxOpenNum.IsMatch(lines[i]) & !rxIsInsideEval.IsMatch(lines[i]))
                 {
                     string numVal = Regex.Match(lines[i], numbers).Value.ToString();

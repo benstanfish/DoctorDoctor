@@ -129,8 +129,8 @@ namespace DoctorDoctor
 
             tests[0] = "<" + searchWord + ">";
             tests[1] = "<" + searchWord + trialNumber.ToString() + ">";
-            tests[2] = "<" + searchWord + "/>";
-            tests[3] = "<" + searchWord + trialNumber.ToString() + "/>";
+            tests[2] = "</" + searchWord + ">";
+            tests[3] = "</" + searchWord + trialNumber.ToString() + ">";
             tests[4] = "<control>";
             tests[5] = "</control>";
             tests[6] = "<control />";

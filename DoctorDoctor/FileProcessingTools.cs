@@ -41,7 +41,14 @@ namespace DoctorDoctor
         {
             string[] lines = File.ReadAllLines(filePath);
             string pattern = @"\</?(" + searchWord + @"\d?\s?/?)\>";
-            Regex rx = new Regex(pattern, RegexOptions.IgnoreCase);
+
+            
+            string startPattern = @"\<(" + searchWord + @"\d?)\>";
+            string endPattern = @"\</(" + searchWord + @"\d?)\>";
+            string selfClosedPattern = @"\<(" + searchWord + @"\d?\s?/)\>";
+            
+
+            Regex rx = new Regex(startPattern, RegexOptions.IgnoreCase);
             foreach (string line in lines)
             {
                 Match match = rx.Match(line);

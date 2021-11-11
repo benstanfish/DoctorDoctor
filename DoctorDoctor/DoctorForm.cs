@@ -12,7 +12,7 @@ namespace DoctorDoctor
             //TODO: This button is a test method.
             string myPath = FileProcessingTools.GetFilePath();
             //MessageBox.Show(myPath);
-            FileProcessingTools.SanitizeFile(myPath,"backcheck");
+            FileProcessingTools.SanitizeFile(myPath,"evaluation");
         }
     }
 }

@@ -46,14 +46,18 @@ namespace DoctorDoctor
             string startPattern = @"\<(" + searchWord + @"\d?)\>";
             string endPattern = @"\</(" + searchWord + @"\d?)\>";
             string selfClosedPattern = @"\<(" + searchWord + @"\d?\s?/)\>";
-            
+
+            string numPattern = @"(\d+)";
 
             Regex rx = new Regex(startPattern, RegexOptions.IgnoreCase);
+            Regex rxNum = new Regex(numPattern, RegexOptions.IgnoreCase);
             foreach (string line in lines)
             {
                 Match match = rx.Match(line);
+                Match numMatch = rxNum.Match(line);
                 if (rx.IsMatch(line))
-                    Debug.WriteLine(match.Value);
+                    if(rxNum.IsMatch(line))
+                        Debug.WriteLine(match.Value + ", " + numMatch.Value);
             }
         }
 

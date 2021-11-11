@@ -22,6 +22,7 @@ namespace DoctorDoctor
             //FileProcessingTools.TestReplace();
 
             FileProcessingTools.RoundTripClean();
+            this.Close();
         }
     }
 }

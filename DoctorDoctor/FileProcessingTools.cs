@@ -66,6 +66,13 @@ namespace DoctorDoctor
             Regex rxOpenNum = new Regex(openTestWithNumbers);
             Regex rxCloseNum = new Regex(closeTestWithNumbers);
 
+            int times = 8;
+            if (searchWord == "evaluation")
+            {
+                times = 9;
+            }
+            string indenter = "\n" + string.Concat(Enumerable.Repeat("\t", times));
+
             for (int i = 0; i < lines.Length; i++)
             {
                 if (rxOpenNum.IsMatch(lines[i]))
@@ -74,14 +81,14 @@ namespace DoctorDoctor
                     string commentType = @"<commentType>" + searchWord + numVal + @"</commentType>";
                     string iteration = @"<iteration>" + numVal + @"</iteration>";
                     string newValue = Regex.Replace(lines[i], numbers, "").ToString();
-                    lines[i] = newValue + "\n\t" + iteration + "\n\t" + commentType;
+                    lines[i] = newValue + indenter + iteration + indenter + commentType;
                 }
                 else if (rxOpen.IsMatch(lines[i]))
                 {
                     string currentValue = lines[i];
                     string commentType = @"<commentType>" + searchWord + @"</commentType>";
                     string iteration = @"<iteration>1</iteration>";
-                    lines[i] = currentValue + "\n\t" + iteration + "\n\t" + commentType;
+                    lines[i] = currentValue + indenter + iteration + indenter + commentType;
                 }
                 else if (rxCloseNum.IsMatch(lines[i]))
                 {
@@ -89,7 +96,6 @@ namespace DoctorDoctor
                     string newValue = Regex.Replace(currentValue, numbers, "").ToString();
                     lines[i] = newValue;
                 }
-
             }
 
             return lines;
@@ -103,13 +109,12 @@ namespace DoctorDoctor
         /// <param name="filePath">Original filepath of the consumed file</param>
         public static void WriteToFile(string[] lines, string filePath)
         {
-            string fileName = Path.GetFileName(filePath);
             using (FileStream fileStream = new FileStream(
-                fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite,
+                filePath, FileMode.Create, FileAccess.Write,
                 FileShare.None))
             {
                 StreamWriter writer = new StreamWriter(fileStream);
-                writer.Write(lines);
+                writer.Write(string.Join("\n",lines));
                 writer.Close();
             }
         }

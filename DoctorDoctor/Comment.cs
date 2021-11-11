@@ -1,46 +1,59 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Xml.Serialization;
 
 namespace DoctorDoctor
 {
     internal class Comment
     {
-        public int id { get; set; }
+        [XmlElement(ElementName = "id")]
+        public int ID { get; set; }
+        [XmlElement(ElementName = "status")]
         public string status { get; set; }
-        public string? spec { get; set; }
-        public string? sheet { get; set; }
-        public string? detail { get; set; }
-        public string critical { get; set; }
-        public string commentText { get; set; }
-        public string? attachment { get; set; }
+        [XmlElement(ElementName = "spec")]
+        public string? Spec { get; set; }
+        [XmlElement(ElementName = "sheet")]
+        public string? Sheet { get; set; }
+        [XmlElement(ElementName = "detail")]
+        public string? Detail { get; set; }
+        [XmlElement(ElementName = "critical")]
+        public string Critical { get; set; }
+        [XmlElement(ElementName = "commentText")]
+        public string CommentText { get; set; }
+        [XmlElement(ElementName = "attachment")]
+        public string? Attachment { get; set; }
         public string? DocRef { get; set; }
-        public string createdBy { get; set; }
-        public DateTime createdOn { get; set; }
+        [XmlElement(ElementName = "createdBy")]
+        public string CreatedBy { get; set; }
+        [XmlElement(ElementName ="createdOn")]
+        public DateTime CreatedOn { get; set; }
         public string? Discipline { get; set; }
-        public List<Evaluation> evaluations { get; set; }
-        public List<Backcheck> backchecks { get; set; }
+        [XmlArray("evaluations")]
+        public List<Evaluation> Evaluations { get; set; }
+        [XmlArray("backchecks")]
+        public List<Backcheck> Backchecks { get; set; }
 
         public Comment()
         {
             //TODO: determine if this ctor is the most appropriate for import
-            id = -1;
+            ID = -1;
             status = "closed";
-            spec = null;
-            sheet = null;
-            detail = null;
-            critical = "No";
-            commentText = "<default constructor used>";
-            attachment = null;
+            Spec = null;
+            Sheet = null;
+            Detail = null;
+            Critical = "No";
+            CommentText = "<default constructor used>";
+            Attachment = null;
             DocRef = null;
-            createdBy = "none";
-            createdOn = DateTime.Now;
+            CreatedBy = "none";
+            CreatedOn = DateTime.Now;
             Discipline = null;
-            evaluations = new List<Evaluation>();
-            backchecks = new List<Backcheck>();
+            Evaluations = new List<Evaluation>();
+            Backchecks = new List<Backcheck>();
         }
+
+
+
+        //TODO: Add load from file
+
 
     }
 }

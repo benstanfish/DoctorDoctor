@@ -5,11 +5,11 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Diagnostics;
-
+using System.Xml.Serialization;
 
 namespace DoctorDoctor
 {
-    public static class FileProcessingTools
+    public static class Helper
     {
        
         /// <summary>
@@ -56,59 +56,45 @@ namespace DoctorDoctor
         /// <returns></returns>
         public static string[] XMLConformer(string[] lines, string searchWord)
         {
-            //TODO: Clean up this code on completion.
             string openTest = @"\<(" + searchWord + @")\>";
             string openTestWithNumbers = @"\<(" + searchWord + @"\d+)\>";
-            string closeTest = @"\</(" + searchWord + @"\d+?)\>";
             string closeTestWithNumbers = @"\</(" + searchWord + @"\d+)\>";
             string numbers = @"\d+";
             string insideEvaluation = @"<evaluation>\d+</evaluation>";
-            //string findIteration = @"<" + searchWord + @">\s+?\n?\t+?<iteration>\s+?\n?\t+?<id>";
-            //string findCommentType = @"<" + searchWord + @">\s+?\n?\t+?<iteration>\s+?\n?\t+?<commentType>\s+?\n?\t+?<id>";
 
             Regex rxOpen = new Regex(openTest);
             Regex rxOpenNum = new Regex(openTestWithNumbers);
             Regex rxCloseNum = new Regex(closeTestWithNumbers);
             Regex rxIsInsideEval = new Regex(insideEvaluation);
-            //Regex rxFindIteration = new Regex(findIteration);
-            //Regex rxFindCommentType = new Regex(findCommentType);
 
             int times = 8;
             if (searchWord == "evaluation")
             {
                 times = 9;
             }
-            string indenter = "\n" + string.Concat(Enumerable.Repeat("\t", times));
+            string indenter = string.Concat(Enumerable.Repeat("\t", times));
 
             for (int i = 0; i < lines.Length; i++)
             {
-                //if (rxFindIteration.IsMatch(lines[i]) | rxFindCommentType.IsMatch(lines[i]))
-                //{
-                //    Debug.WriteLine("Alright Here");
-                //}
-                if (rxOpenNum.IsMatch(lines[i]) & !rxIsInsideEval.IsMatch(lines[i]))
+                if (rxOpenNum.IsMatch(lines[i]) & !rxIsInsideEval.IsMatch(lines[i]))        // Case if there is a numbered member, e.g. backcheck1.
                 {
-                    string numVal = Regex.Match(lines[i], numbers).Value.ToString();
-                    string commentType = @"<commentType>" + searchWord + numVal + @"</commentType>";
-                    string iteration = @"<iteration>" + numVal + @"</iteration>";
-                    string newValue = Regex.Replace(lines[i], numbers, "").ToString();
-                    lines[i] = newValue + indenter + iteration + indenter + commentType;
+                    string oldInnerText = Regex.Match(lines[i], openTestWithNumbers).Value.ToString();
+                    oldInnerText = Regex.Replace(oldInnerText, @"\<", "");
+                    oldInnerText = Regex.Replace(oldInnerText, @"\>", "");
+                    lines[i] = indenter + @"<" + searchWord + " name=\"" + oldInnerText + "\">";
                 }
-                //else if (rxOpen.IsMatch(lines[i]) & !rxIsInsideEval.IsMatch(lines[i]))
-                //{
-                //    string currentValue = lines[i];
-                //    string commentType = @"<commentType>" + searchWord + @"</commentType>";
-                //    string iteration = @"<iteration>1</iteration>";
-                //    lines[i] = currentValue + indenter + iteration + indenter + commentType;
-                //}
-                else if (rxCloseNum.IsMatch(lines[i]))
+                else if (rxOpen.IsMatch(lines[i]) & !rxIsInsideEval.IsMatch(lines[i]))      // Case if the member is not numbered, e.g. backcheck.
+                {
+
+                    lines[i] = indenter + @"<" + searchWord + " name=\"" + searchWord + "\">";
+                }
+                else if (rxCloseNum.IsMatch(lines[i]))                                      // De-numbers the closing tag.
                 {
                     string currentValue = lines[i];
                     string newValue = Regex.Replace(currentValue, numbers, "").ToString();
-                    lines[i] = newValue;
+                    lines[i] = indenter + newValue;
                 }
             }
-
             return lines;
         }
 
@@ -134,7 +120,7 @@ namespace DoctorDoctor
         /// <summary>
         /// Roundtrip conforming XML file.
         /// </summary>
-        public static void RoundTripClean()
+        public static void RoundTripConform()
         {
             //TODO: Delete debugs
             string filePath = GetFilePath();
@@ -293,6 +279,131 @@ namespace DoctorDoctor
             }
 
         }
+
+
+        /// <summary>
+        /// TEST Processes through a string array, looking for keywords and numbers in the attributes to update.
+        /// </summary>
+        /// <param name="lines">raw string array from XML file</param>
+        /// <param name="searchWord">e.g. "backcheck" or "evaluator"</param>
+        /// <returns></returns>
+        public static string[] Test_XMLConformer(string[] lines, string searchWord)
+        {
+            //TODO: Delete this code when finished.
+            string openTest = @"\<(" + searchWord + @")\>";
+            string openTestWithNumbers = @"\<(" + searchWord + @"\d+)\>";
+            string closeTest = @"\</(" + searchWord + @"\d+?)\>";
+            string closeTestWithNumbers = @"\</(" + searchWord + @"\d+)\>";
+            string numbers = @"\d+";
+            string insideEvaluation = @"<evaluation>\d+</evaluation>";
+            //string findIteration = @"<" + searchWord + @">\s+?\n?\t+?<iteration>\s+?\n?\t+?<id>";
+            //string findCommentType = @"<" + searchWord + @">\s+?\n?\t+?<iteration>\s+?\n?\t+?<commentType>\s+?\n?\t+?<id>";
+
+            Regex rxOpen = new Regex(openTest);
+            Regex rxOpenNum = new Regex(openTestWithNumbers);
+            Regex rxCloseNum = new Regex(closeTestWithNumbers);
+            Regex rxIsInsideEval = new Regex(insideEvaluation);
+            //Regex rxFindIteration = new Regex(findIteration);
+            //Regex rxFindCommentType = new Regex(findCommentType);
+
+            int times = 8;
+            if (searchWord == "evaluation")
+            {
+                times = 9;
+            }
+            string indenter = "\n" + string.Concat(Enumerable.Repeat("\t", times));
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                //if (rxFindIteration.IsMatch(lines[i]) | rxFindCommentType.IsMatch(lines[i]))
+                //{
+                //    Debug.WriteLine("Alright Here");
+                //}
+                if (rxOpenNum.IsMatch(lines[i]) & !rxIsInsideEval.IsMatch(lines[i]))
+                {
+                    string numVal = Regex.Match(lines[i], numbers).Value.ToString();
+                    string commentType = @"<commentType>" + searchWord + numVal + @"</commentType>";
+                    string iteration = @"<iteration>" + numVal + @"</iteration>";
+                    string newValue = Regex.Replace(lines[i], numbers, "").ToString();
+                    lines[i] = newValue + indenter + iteration + indenter + commentType;
+                }
+                //else if (rxOpen.IsMatch(lines[i]) & !rxIsInsideEval.IsMatch(lines[i]))
+                //{
+                //    string currentValue = lines[i];
+                //    string commentType = @"<commentType>" + searchWord + @"</commentType>";
+                //    string iteration = @"<iteration>1</iteration>";
+                //    lines[i] = currentValue + indenter + iteration + indenter + commentType;
+                //}
+                else if (rxCloseNum.IsMatch(lines[i]))
+                {
+                    string currentValue = lines[i];
+                    string newValue = Regex.Replace(currentValue, numbers, "").ToString();
+                    lines[i] = newValue;
+                }
+            }
+
+            return lines;
+        }
+
+
+
+
+
+        public static void DumpClass(object thing)
+        {
+            string usersDesktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string fileName = usersDesktop + @"\Project Serialize\XML_Serialize_List";
+            using (FileStream stream = new FileStream(fileName, FileMode.OpenOrCreate))
+            {
+                XmlSerializer xml = new XmlSerializer(typeof(List<AThing>));
+                xml.Serialize(stream, thing);
+            }
+
+
+        }
+
+        // Utility Methods
+        public static void CreateProgramDirectory()
+        {
+            string projectDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\Project Serialize\";
+            Directory.CreateDirectory(projectDirectory);
+        }
+
+
+        // [Serializable]   // This directive is only required for non-XML serialization
+        public class AThing
+        {
+            [XmlAttribute]
+            public int ID { get; set; }
+            [XmlElement]
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+            public int FavoriteInteger { get; set; }
+
+            public void SaveObject(string fileName)
+            {
+                using (FileStream stream = new FileStream(fileName, FileMode.Append))
+                {
+                    XmlSerializer xml = new XmlSerializer(typeof(AThing));
+                    xml.Serialize(stream, this);
+                }
+            }
+
+            public static AThing LoadFromFile(string fileName)
+            {
+                using (FileStream stream = new FileStream(fileName, FileMode.Open))
+                {
+                    XmlSerializer xml = new XmlSerializer(typeof(AThing));
+                    return (AThing)xml.Deserialize(stream);
+                }
+            }
+
+        }
+
+
+
+
+
 
     }
 

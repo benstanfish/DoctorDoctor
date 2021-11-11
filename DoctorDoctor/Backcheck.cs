@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace DoctorDoctor
 {
     internal class Backcheck
     {
-        public int iteration { get; set; }          // Corresponds to the 1, 2, etc., of the commentType below    
-        public string commentType { get; set; }     // Corresponds to backcheck1, backcheck2, etc., in original XML
+        [XmlAttribute(AttributeName = "name")]
+        public string Name { get; set; }                // Corresponds to backcheck1, backcheck2, etc., in original XML
         public int id { get; set; }
-        public int comment { get; set; }    // Corresponding Comment ID
-        public int evaluation { get; set; } // corresponding Evaluation ID
+        public int comment { get; set; }            // Corresponding Comment ID
+        public int evaluation { get; set; }         // corresponding Evaluation ID
         public string status { get; set; }
         public string backcheckText { get; set; }
         public string? attachment { get; set; }
@@ -22,8 +23,7 @@ namespace DoctorDoctor
         public Backcheck()
         {
             //TODO: Determine if Backcheck default ctor should be error constructor, or used for typical import
-            iteration = 1;
-            commentType = "backcheck";
+            Name = "backcheck";
             id = -1;
             comment = -1;
             evaluation = -1;
@@ -35,5 +35,15 @@ namespace DoctorDoctor
         }
 
         //TODO: Create additional ctors
+
+
+        public static Backcheck Load(string fileName)
+        {
+            using (var stream = new FileStream(fileName, FileMode.Open))
+            {
+                var XML = new XmlSerializer(typeof(Backcheck));
+                return (Backcheck)XML.Deserialize(stream);
+            }
+        }
     }
 }

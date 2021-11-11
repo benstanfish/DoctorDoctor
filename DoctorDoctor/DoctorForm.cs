@@ -21,8 +21,18 @@ namespace DoctorDoctor
             //FileProcessingTools.TestRegex();
             //FileProcessingTools.TestReplace();
 
-            FileProcessingTools.RoundTripClean();
-            this.Close();
+            //Helper.RoundTripConform();
+
+
+
+
+
+
+
+
+
+
+            //this.Close();
         }
     }
 }

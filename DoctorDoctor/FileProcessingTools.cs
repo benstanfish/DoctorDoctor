@@ -285,9 +285,6 @@ namespace DoctorDoctor
 
         }
 
-
-
-
     }
 
 

@@ -16,6 +16,7 @@ namespace DoctorDoctor
         public string critical { get; set; }
         public string commentText { get; set; }
         public string? attachment { get; set; }
+        public string? DocRef { get; set; }
         public string createdBy { get; set; }
         public DateTime createdOn { get; set; }
         public string? Discipline { get; set; }
@@ -33,6 +34,7 @@ namespace DoctorDoctor
             critical = "No";
             commentText = "<default constructor used>";
             attachment = null;
+            DocRef = null;
             createdBy = "none";
             createdOn = DateTime.Now;
             Discipline = null;

@@ -48,7 +48,96 @@ namespace DoctorDoctor
         }
 
 
-        public static void SanitizeFile(string filePath, string searchWord)
+        /// <summary>
+        /// Processes through a string array, looking for keywords and numbers in the attributes to update.
+        /// </summary>
+        /// <param name="lines">raw string array from XML file</param>
+        /// <param name="searchWord">e.g. "backcheck" or "evaluator"</param>
+        /// <returns></returns>
+        public static string[] XMLConformer(string[] lines, string searchWord)
+        {
+            string openTest = @"\<(" + searchWord + @")\>";
+            string openTestWithNumbers = @"\<(" + searchWord + @"\d+)\>";
+            string closeTest = @"\</(" + searchWord + @"\d+?)\>";
+            string closeTestWithNumbers = @"\</(" + searchWord + @"\d+)\>";
+            string numbers = @"\d+";
+
+            Regex rxOpen = new Regex(openTest);
+            Regex rxOpenNum = new Regex(openTestWithNumbers);
+            Regex rxCloseNum = new Regex(closeTestWithNumbers);
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                if (rxOpenNum.IsMatch(lines[i]))
+                {
+                    string numVal = Regex.Match(lines[i], numbers).Value.ToString();
+                    string commentType = @"<commentType>" + searchWord + numVal + @"</commentType>";
+                    string iteration = @"<iteration>" + numVal + @"</iteration>";
+                    string newValue = Regex.Replace(lines[i], numbers, "").ToString();
+                    lines[i] = newValue + "\n\t" + iteration + "\n\t" + commentType;
+                }
+                else if (rxOpen.IsMatch(lines[i]))
+                {
+                    string currentValue = lines[i];
+                    string commentType = @"<commentType>" + searchWord + @"</commentType>";
+                    string iteration = @"<iteration>1</iteration>";
+                    lines[i] = currentValue + "\n\t" + iteration + "\n\t" + commentType;
+                }
+                else if (rxCloseNum.IsMatch(lines[i]))
+                {
+                    string currentValue = lines[i];
+                    string newValue = Regex.Replace(currentValue, numbers, "").ToString();
+                    lines[i] = newValue;
+                }
+
+            }
+
+            return lines;
+        }
+
+
+        /// <summary>
+        /// Function to write the contents of a string array back to the file where it came from.
+        /// </summary>
+        /// <param name="lines">string array of the text</param>
+        /// <param name="filePath">Original filepath of the consumed file</param>
+        public static void WriteToFile(string[] lines, string filePath)
+        {
+            string fileName = Path.GetFileName(filePath);
+            using (FileStream fileStream = new FileStream(
+                fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite,
+                FileShare.None))
+            {
+                StreamWriter writer = new StreamWriter(fileStream);
+                writer.Write(lines);
+                writer.Close();
+            }
+        }
+    
+
+        /// <summary>
+        /// Roundtrip conforming XML file.
+        /// </summary>
+        public static void RoundTripClean()
+        {
+            string filePath = GetFilePath();
+            Debug.WriteLine("File consumed");
+            string[] lines = ConsumeFile(filePath);
+            lines = XMLConformer(lines, "evaluation");
+            Debug.WriteLine("\"evaluation\" comformed");
+            lines = XMLConformer(lines, "backcheck");
+            Debug.WriteLine("\"backcheck\" comformed");
+            WriteToFile(lines, filePath);
+            Debug.WriteLine("File write completed.");
+        }
+
+
+        /// <summary>
+        /// Test function for sanitizing File
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="searchWord"></param>
+        public static void TestSanitizeFile(string filePath, string searchWord)
         {
             string[] lines = File.ReadAllLines(filePath);
             
@@ -74,6 +163,7 @@ namespace DoctorDoctor
                 //    Debug.WriteLine(line + "\t" + Regex.Replace(line, numPattern, ""));
             }
         }
+
 
         /// <summary>
         /// A test method for testing regex.
@@ -116,11 +206,13 @@ namespace DoctorDoctor
             Debug.WriteLine(r_selfClosedPatternOnlyNumbers.IsMatch(selfClosedNumbers) + "\t" + num.Match(selfClosedNumbers).Value);
         }
 
+
         /// <summary>
         /// A test method for replacing substrings with regex.
         /// </summary>
         public static void TestReplace()
         {
+            //TODO: Delete when done.
             string searchWord = "backcheck";
             string[] tests = new string[7];
             Random rand = new Random();
@@ -155,7 +247,7 @@ namespace DoctorDoctor
 
             for(int i = 0; i < tests.Length; i++)   
             {
-                Debug.WriteLine("Run: " + i + "\t" + tests[i]);
+                //Debug.WriteLine("Run: " + i + "\t" + tests[i]);
                 //if (rxOpenNum.IsMatch(tests[i]))
                 //    Debug.WriteLine($"Success at {tests[i]}");
                 //else
@@ -184,6 +276,8 @@ namespace DoctorDoctor
             }
 
         }
+
+
 
 
     }

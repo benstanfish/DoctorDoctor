@@ -19,7 +19,9 @@ namespace DoctorDoctor
             //FileProcessingTools.SanitizeFile(myPath,"evaluation");
 
             //FileProcessingTools.TestRegex();
-            FileProcessingTools.TestReplace();
+            //FileProcessingTools.TestReplace();
+
+            FileProcessingTools.RoundTripClean();
         }
     }
 }

@@ -56,6 +56,7 @@ namespace DoctorDoctor
         /// <returns></returns>
         public static string[] XMLConformer(string[] lines, string searchWord)
         {
+            //TODO: Clean up this code on completion.
             string openTest = @"\<(" + searchWord + @")\>";
             string openTestWithNumbers = @"\<(" + searchWord + @"\d+)\>";
             string closeTest = @"\</(" + searchWord + @"\d+?)\>";
@@ -85,7 +86,7 @@ namespace DoctorDoctor
                 //{
                 //    Debug.WriteLine("Alright Here");
                 //}
-                else if (rxOpenNum.IsMatch(lines[i]) & !rxIsInsideEval.IsMatch(lines[i]))
+                if (rxOpenNum.IsMatch(lines[i]) & !rxIsInsideEval.IsMatch(lines[i]))
                 {
                     string numVal = Regex.Match(lines[i], numbers).Value.ToString();
                     string commentType = @"<commentType>" + searchWord + numVal + @"</commentType>";
@@ -135,6 +136,7 @@ namespace DoctorDoctor
         /// </summary>
         public static void RoundTripClean()
         {
+            //TODO: Delete debugs
             string filePath = GetFilePath();
             Debug.WriteLine("File consumed");
             string[] lines = ConsumeFile(filePath);

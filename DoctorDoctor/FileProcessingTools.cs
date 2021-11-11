@@ -43,9 +43,9 @@ namespace DoctorDoctor
             
             string pattern = @"\</?(" + searchWord + @"\d?\s?/?)\>";
 
-            string startPattern = @"\<(" + searchWord + @"\d)\>";
-            string endPattern = @"\</(" + searchWord + @"\d)\>";
-            string selfClosedPattern = @"\<(" + searchWord + @"\d\s?/)\>";
+            string startPattern = @"\<(" + searchWord + @"\d?)\>";
+            string endPattern = @"\</(" + searchWord + @"\d?)\>";
+            string selfClosedPattern = @"\<(" + searchWord + @"\d?\s?/)\>";
 
             string numPattern = @"(\d+)";
 
@@ -55,9 +55,10 @@ namespace DoctorDoctor
             {
                 Match match = rx.Match(line);
                 Match numMatch = rxNum.Match(line);
-                //if (rx.IsMatch(line))
-                //    if(rxNum.IsMatch(line))
-                //        Debug.WriteLine(match.Value + ", " + numMatch.Value);
+                if (match.Success !& numMatch.Success)
+                        Debug.WriteLine(match.Value + ", " + numMatch.Value);
+                else if(match.Success && numMatch.Success)
+                        Debug.WriteLine(match.Value);
                 //if (match.Success && numMatch.Success)
                 //    Debug.WriteLine(line + "\t" + Regex.Replace(line, numPattern, ""));
             }

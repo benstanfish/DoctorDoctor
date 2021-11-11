@@ -10,6 +10,7 @@ namespace DoctorDoctor
         {
             ApplicationConfiguration.Initialize();
             Application.Run(new DoctorForm());
+            
         }
     }
 

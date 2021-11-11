@@ -1,3 +1,4 @@
+
 namespace DoctorDoctor
 {
     public partial class DoctorForm : Form
@@ -5,14 +6,20 @@ namespace DoctorDoctor
         public DoctorForm()
         {
             InitializeComponent();
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             //TODO: This button is a test method.
-            string myPath = FileProcessingTools.GetFilePath();
+
+            //string myPath = FileProcessingTools.GetFilePath();
+            //string[] lines = FileProcessingTools.ConsumeFile(myPath);
             //MessageBox.Show(myPath);
-            FileProcessingTools.SanitizeFile(myPath,"evaluation");
+            //FileProcessingTools.SanitizeFile(myPath,"evaluation");
+
+            //FileProcessingTools.TestRegex();
+            FileProcessingTools.TestReplace();
         }
     }
 }

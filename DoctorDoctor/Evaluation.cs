@@ -8,7 +8,8 @@ namespace DoctorDoctor
 {
     internal class Evaluation
     {
-        public int iteration { get; set; }              // Corresponds to evaluation1, evaluation2, etc., in original XML
+        public int iteration { get; set; }
+        public string commentType { get; set; }         // Corresponds to evaluation1, evaluation2, etc., in original XML
         public int id { get; set; }                     
         public int comment { get; set; }                // Corresponding Comment ID
         public string status { get; set; }
@@ -23,7 +24,8 @@ namespace DoctorDoctor
         public Evaluation()
         {
             //TODO: Determine if Evaluation default ctor should be error constructor, or used for typical import
-            iteration = 0;
+            iteration = 1;
+            commentType = "evaluation";
             id = -1;
             comment = -1;
             status = "closed";

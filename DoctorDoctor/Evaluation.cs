@@ -7,58 +7,79 @@ using System.Xml.Serialization;
 
 namespace DoctorDoctor
 {
-    internal class Evaluation
+    [XmlRoot(ElementName ="evaluation")]
+    public class Evaluation
     {
-           
-        [XmlAttribute(AttributeName = "name")]
-        public string Name { get; set; }                // Corresponds to evaluation1, evaluation2, etc., in original XML
-        [XmlElement(ElementName = "id")]
-        public int Id { get; set; }
-        [XmlElement(ElementName = "comment")]
-        public int Comment { get; set; }                // Corresponding Comment ID
-        [XmlElement(ElementName = "status")]
-        public string Status { get; set; }
-        [XmlElement(ElementName = "impactScope")]
-        public string ImpactScope { get; set; }
-        [XmlElement(ElementName = "impactCost")]
-        public string ImpactCost { get; set; }
-        [XmlElement(ElementName = "impactTime")]
-        public string ImpactTime { get; set; }
-        [XmlElement(ElementName = "evaluationText")]
-        public string EvaluationText { get; set; }
-        [XmlElement(ElementName = "attachment")]
-        public string? Attachment { get; set; }
-        [XmlElement(ElementName = "createdBy")]
-        public string CreatedBy { get; set; }
-        [XmlElement(ElementName = "createdOn")]
-        public DateTime CreatedOn { get; set; }
+    
+        [XmlAttribute]
+        public string name { get; set; }    // Corresponds to evaluation1, evaluation2, etc., in original XML
+        [XmlElement]
+        public int id { get; set; }
+        [XmlElement(ElementName ="comment")]
+        public int commentId { get; set; } // Corresponding Comment ID
+        public string status { get; set; }
+        public string impactScope { get; set; }
+        public string impactCost { get; set; }
+        public string impactTime { get; set; }
+        public string evaluationText { get; set; }
+        public string attachment { get; set; }
+        public string createdBy { get; set; }
+        public string createdOn { get; set; }
 
         public Evaluation()
         {
-            //TODO: Determine if Evaluation default ctor should be error constructor, or used for typical import
-            Name = "evaluation";
-            Id = -1;
-            Comment = -1;
-            Status = "closed";
-            ImpactScope = "none";
-            ImpactCost = "none";
-            ImpactTime = "none";
-            EvaluationText = "<default constructor used>";
-            Attachment = null;
-            CreatedBy = "none";
-            CreatedOn = DateTime.Now;
         }
 
-        //TODO: Create additional ctors
-
-              
-        public static Evaluation Load(string fileName)
+        public Evaluation(string Name, int ID, int Comment, string Status, string ImpactScope, string ImpactCost,
+            string ImpactTime, string EvaluationText, string Attachment, string CreatedBy, string CreatedOn)
         {
-            using (var stream = new FileStream(fileName, FileMode.Open))
+            name = Name;
+            id = ID;
+            commentId = Comment;
+            status = Status;
+            impactScope = ImpactScope;
+            impactCost = ImpactCost;
+            impactTime = ImpactTime;
+            evaluationText = EvaluationText;
+            attachment = Attachment;
+            createdBy = CreatedBy;
+            createdOn = CreatedOn;
+        }
+
+        public void Write(string filePath)
+        {
+            var xml = new XmlSerializer(typeof(Evaluation));
+            if (File.Exists(filePath))
+                File.Delete(filePath);
+            var writer = new StreamWriter(filePath);
+            xml.Serialize(writer, this);
+            writer.Close();
+        }
+
+        public static Evaluation Read(string filePath)
+        {
+            var xml = new XmlSerializer(typeof(Evaluation));
+            using (var reader = new StreamReader(filePath))
             {
-                var XML = new XmlSerializer(typeof(Evaluation));
-                return (Evaluation)XML.Deserialize(stream);
+                return (Evaluation)xml.Deserialize(reader);
             }
         }
+
+        public override string ToString()
+        {
+            return $"Name: {name}\n" +
+            $"Id: {id}\n" +
+            $"CommentId {commentId}\n" +
+            $"Status: {status}\n" +
+            $"ImpactScope: {impactScope}\n" +
+            $"ImpactCost: {impactCost}\n" +
+            $"ImpactTime: {impactTime}\n" +
+            $"EvaluationText: {evaluationText}\n" +
+            $"Attachment: {attachment}\n" +
+            $"CreatedBy: {createdBy}\n" +
+            $"CreatedOn: {createdOn}";
+        }
+
+
     }
 }

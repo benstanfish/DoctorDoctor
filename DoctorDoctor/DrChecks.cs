@@ -9,10 +9,10 @@ namespace DoctorDoctor
     internal class DrChecks
     {
         public int ProjectID { get; set; }
-        public string? ProjectControlNbr { get; set; }
-        public string? ProjectName { get; set; }
+        public string ProjectControlNbr { get; set; }
+        public string ProjectName { get; set; }
         public int ReviewID { get; set; }       
-        public string? ReviewName { get; set; }  // This generally corresponds to the project "phase"
+        public string ReviewName { get; set; }  // This generally corresponds to the project "phase"
 
         public DrChecks()
         {

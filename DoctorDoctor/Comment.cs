@@ -9,23 +9,23 @@ namespace DoctorDoctor
         [XmlElement(ElementName = "status")]
         public string status { get; set; }
         [XmlElement(ElementName = "spec")]
-        public string? Spec { get; set; }
+        public string Spec { get; set; }
         [XmlElement(ElementName = "sheet")]
-        public string? Sheet { get; set; }
+        public string Sheet { get; set; }
         [XmlElement(ElementName = "detail")]
-        public string? Detail { get; set; }
+        public string Detail { get; set; }
         [XmlElement(ElementName = "critical")]
         public string Critical { get; set; }
         [XmlElement(ElementName = "commentText")]
         public string CommentText { get; set; }
         [XmlElement(ElementName = "attachment")]
-        public string? Attachment { get; set; }
-        public string? DocRef { get; set; }
+        public string Attachment { get; set; }
+        public string DocRef { get; set; }
         [XmlElement(ElementName = "createdBy")]
         public string CreatedBy { get; set; }
         [XmlElement(ElementName ="createdOn")]
         public DateTime CreatedOn { get; set; }
-        public string? Discipline { get; set; }
+        public string Discipline { get; set; }
         [XmlArray("evaluations")]
         public List<Evaluation> Evaluations { get; set; }
         [XmlArray("backchecks")]

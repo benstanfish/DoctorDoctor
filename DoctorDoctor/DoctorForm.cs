@@ -74,10 +74,13 @@ namespace DoctorDoctor
             //Backcheck bc = Backcheck.Read(@"c:\users\benst\desktop\_xml tests\backcheck.xml");
             //Debug.WriteLine(bc.ToString());
 
-            Comment comment = Comment.Read(@"c:\users\benst\desktop\_xml tests\comment.xml");
-            Debug.WriteLine(comment.ToString());
+            //Comment comment = Comment.Read(@"c:\users\benst\desktop\_xml tests\comment.xml");
+            //Debug.WriteLine(comment.ToString());
 
-            comment.Write(@"c:\users\benst\desktop\_xml tests\comment_new.xml");
+            //comment.Write(@"c:\users\benst\desktop\_xml tests\comment_new.xml");
+
+            DrChecks dc = DrChecks.Read(@"c:\users\benst\desktop\_xml tests\drchecks.xml");
+            Debug.WriteLine(dc.ToString()); 
 
         }
 

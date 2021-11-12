@@ -8,23 +8,23 @@ using System.Xml.Serialization;
 namespace DoctorDoctor
 {
     [XmlRoot(ElementName ="evaluations")]
-    public class Evaluations
+    public class WEvaluations
     {
         [XmlArray(ElementName = "evaluations")]
         public List<Evaluation> EvaluationsList { get; set; }
 
-        public Evaluations()
+        public WEvaluations()
         {
         }
 
-        public Evaluations(List<Evaluation> evaluations)
+        public WEvaluations(List<Evaluation> evaluations)
         {
             EvaluationsList = evaluations;
         }
 
         public void Write(string filePath)
         {
-            var xml = new XmlSerializer(typeof(Evaluations));
+            var xml = new XmlSerializer(typeof(WEvaluations));
             if (File.Exists(filePath))
                 File.Delete(filePath);
             var writer = new StreamWriter(filePath);
@@ -32,12 +32,12 @@ namespace DoctorDoctor
             writer.Close();
         }
 
-        public static Evaluations Read(string filePath)
+        public static WEvaluations Read(string filePath)
         {
-            var xml = new XmlSerializer(typeof(Evaluations));
+            var xml = new XmlSerializer(typeof(WEvaluations));
             using (var reader = new StreamReader(filePath))
             {
-                return (Evaluations)xml.Deserialize(reader);
+                return (WEvaluations)xml.Deserialize(reader);
             }
         }
 

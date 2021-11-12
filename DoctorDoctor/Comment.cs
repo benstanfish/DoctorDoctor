@@ -2,12 +2,11 @@
 
 namespace DoctorDoctor
 {
-    internal class Comment
-    {
+    [XmlRoot(ElementName ="comment")]
+    public class Comment
+    {   
         [XmlElement(ElementName = "id")]
-        public int ID { get; set; }
-        [XmlElement(ElementName = "status")]
-        public string status { get; set; }
+        public int Id { get; set; }
         [XmlElement(ElementName = "spec")]
         public string Spec { get; set; }
         [XmlElement(ElementName = "sheet")]
@@ -20,40 +19,95 @@ namespace DoctorDoctor
         public string CommentText { get; set; }
         [XmlElement(ElementName = "attachment")]
         public string Attachment { get; set; }
+        [XmlElement(ElementName = "DocRef")]
         public string DocRef { get; set; }
         [XmlElement(ElementName = "createdBy")]
         public string CreatedBy { get; set; }
         [XmlElement(ElementName ="createdOn")]
-        public DateTime CreatedOn { get; set; }
+        public string CreatedOn { get; set; }
+        [XmlElement(ElementName = "Discipline")]
         public string Discipline { get; set; }
-        [XmlArray("evaluations")]
-        public List<Evaluation> Evaluations { get; set; }
-        [XmlArray("backchecks")]
-        public List<Backcheck> Backchecks { get; set; }
+        [XmlElement(ElementName = "status")]
+        public string Status { get; set; }
+
+        [XmlElement("evaluations")]
+        public List<Evaluation> EvaluationList { get; set; }
+        [XmlElement("backchecks")]
+        public List<Backcheck> BackcheckList { get; set; }
 
         public Comment()
         {
-            //TODO: determine if this ctor is the most appropriate for import
-            ID = -1;
-            status = "closed";
-            Spec = null;
-            Sheet = null;
-            Detail = null;
-            Critical = "No";
-            CommentText = "<default constructor used>";
-            Attachment = null;
-            DocRef = null;
-            CreatedBy = "none";
-            CreatedOn = DateTime.Now;
-            Discipline = null;
-            Evaluations = new List<Evaluation>();
-            Backchecks = new List<Backcheck>();
         }
 
+        public Comment(int id, string spec, string sheet, string detail, 
+            string critical, string commentText, string attachment, string docRef,
+            string createdBy, string createdOn, string discipline, string status, 
+            List<Evaluation> evaluations, List<Backcheck> backchecks)
+        {
+            Id = id;
+            Spec = spec;
+            Sheet = sheet;
+            Detail = detail;
+            Critical = critical;
+            CommentText = commentText;
+            Attachment = attachment;
+            DocRef = docRef;
+            CreatedBy = createdBy;
+            CreatedOn = createdOn;
+            Discipline = discipline;
+            Status = status;
+            EvaluationList = evaluations;
+            BackcheckList = backchecks;
+        }
 
+        public int EvaluationCount()
+        {
+            return EvaluationList.Count;
+        }
+        public int BackcheckCount()
+        {
+            return BackcheckList.Count;
+        }
 
-        //TODO: Add load from file
+        public void Write(string filePath)
+        {
+            var xml = new XmlSerializer(typeof(Comment));
+            if (File.Exists(filePath))
+                File.Delete(filePath);
+            var writer = new StreamWriter(filePath);
+            xml.Serialize(writer, this);
+            writer.Close();
+        }
 
+        public static Comment Read(string filePath)
+        {
+            var xml = new XmlSerializer(typeof(Comment));
+            using (var reader = new StreamReader(filePath))
+            {
+                return (Comment)xml.Deserialize(reader);
+            }
+        }
 
+        public override string ToString()
+        {
+            return $"----- Comment Object -----\n" +
+
+            $"Id: {Id}\n" +
+            $"Spec: {Spec}\n" +
+            $"Sheet: {Sheet}\n" +
+            $"Detail: {Detail}\n" +
+            $"Critical: {Critical}\n" +
+            $"CommentText: {CommentText}\n" +
+            $"Attachment: {Attachment}\n" +
+            $"DocRef: {DocRef}\n" +
+            $"CreatedBy: {CreatedBy}\n" +
+            $"CreatedOn: {CreatedOn}\n" +
+            $"Status: {Status}\n" +
+            $"Discipline: {Discipline}\n" +
+            $"Evaluations: {EvaluationCount()}\n" +
+            $"Backchecks: {BackcheckCount()}\n" +
+            $"-------------------------"
+            ;
+        }
     }
 }

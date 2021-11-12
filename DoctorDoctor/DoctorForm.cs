@@ -25,9 +25,6 @@ namespace DoctorDoctor
 
             //Helper.RoundTripConform();
 
-
-
-
             //Evaluation evaluation = Evaluation.Load(@"C:\Users\benst\Desktop\_XML Tests\evaluation.xml");
             //Evaluation evaluation = new Evaluation();
 
@@ -77,9 +74,10 @@ namespace DoctorDoctor
             //Backcheck bc = Backcheck.Read(@"c:\users\benst\desktop\_xml tests\backcheck.xml");
             //Debug.WriteLine(bc.ToString());
 
+            Comment comment = Comment.Read(@"c:\users\benst\desktop\_xml tests\comment.xml");
+            Debug.WriteLine(comment.ToString());
 
-
-
+            comment.Write(@"c:\users\benst\desktop\_xml tests\comment_new.xml");
 
         }
 

@@ -11,35 +11,39 @@ namespace DoctorDoctor
     public class Backcheck
     {
         [XmlAttribute(AttributeName = "name")]
-        public string Name { get; set; }            // Corresponds to backcheck1, backcheck2, etc., in original XML
-        [XmlElement]
-        public int id { get; set; }
+        public string Name { get; set; } 
+        [XmlElement(ElementName ="id")]
+        public int Id { get; set; }
         [XmlElement(ElementName ="comment")]
-        public int commentId { get; set; }            // Corresponding Comment ID
+        public int CommentId { get; set; } 
         [XmlElement(ElementName ="evaluation")]
-        public int evaluationId { get; set; }         // corresponding Evaluation ID
-        [XmlElement]
-        public string status { get; set; }
-        public string backcheckText { get; set; }
-        public string attachment { get; set; }
-        public string createdBy { get; set; }
-        public string createdOn { get; set; }
+        public int EvaluationID { get; set; }    
+        [XmlElement(ElementName ="status")]
+        public string Status { get; set; }
+        [XmlElement(ElementName = "backcheckText")]
+        public string BackcheckText { get; set; }
+        [XmlElement(ElementName = "attachment")]
+        public string Attachment { get; set; }
+        [XmlElement(ElementName = "createdBy")]
+        public string CreatedBy { get; set; }
+        [XmlElement(ElementName = "createdOn")]
+        public string CreatedOn { get; set; }
 
         public Backcheck()
         {
         }
 
-        public Backcheck(string name, int ID, int CommentId, int EvaluationId, string Status, string BackcheckText, string Attachment, string CreatedBy, string CreatedOn)
+        public Backcheck(string name, int id, int commentId, int evaluationId, string status, string backcheckText, string attachment, string createdBy, string createdOn)
         {
             Name = name;
-            id = ID;
-            commentId = CommentId;
-            evaluationId = EvaluationId;
-            status = Status;
-            backcheckText = BackcheckText;
-            attachment = Attachment;
-            createdBy = CreatedBy;
-            createdOn = CreatedOn;
+            Id = id;
+            CommentId = commentId;
+            EvaluationID = evaluationId;
+            Status = status;
+            BackcheckText = backcheckText;
+            Attachment = attachment;
+            CreatedBy = createdBy;
+            CreatedOn = createdOn;
         }
 
 
@@ -67,14 +71,14 @@ namespace DoctorDoctor
         {
             return $"--- Backcheck Object ---\n" +
             $"Name: {Name}\n" +
-            $"Id: {id}\n" +
-            $"CommentId: {commentId}\n" +
-            $"EvaluationId: {evaluationId}\n" +
-            $"Status: {status}\n" +
-            $"BackcheckText: {backcheckText}\n" +
-            $"Attachment: {attachment}\n" +
-            $"CreatedBy: {createdBy}\n" +
-            $"CreatedOn: {createdOn}\n" + $"-------------------------";
+            $"Id: {Id}\n" +
+            $"CommentId: {CommentId}\n" +
+            $"EvaluationId: {EvaluationID}\n" +
+            $"Status: {Status}\n" +
+            $"BackcheckText: {BackcheckText}\n" +
+            $"Attachment: {Attachment}\n" +
+            $"CreatedBy: {CreatedBy}\n" +
+            $"CreatedOn: {CreatedOn}\n" + $"-------------------------";
         }
     }
 }

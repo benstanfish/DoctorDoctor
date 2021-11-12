@@ -59,8 +59,8 @@ namespace DoctorDoctor
             //Evaluation eval = new Evaluation("evaluation1",1,1,"status","impactscope","impactcost","impacttime","evaltext","attachment","ben fisher",DateTime.Now);
             //eval.Write(@"C:\Users\benst\Desktop\_XML Tests\eval.xml");
 
-            //Evaluation newEval = Evaluation.Read(@"C:\Users\benst\Desktop\_XML Tests\evaluations.xml");
-            //Debug.WriteLine(newEval.ToString()); 
+            //Evaluation newEval = Evaluation.Read(@"C:\Users\benst\Desktop\_XML Tests\evaluation.xml");
+            //Debug.WriteLine(newEval.ToString());
 
             //Evaluation eval1 = new Evaluation("evaluation1",1,1,"status","impactscope","impactcost","impacttime","evaltext","attachment","ben fisher",DateTime.Now.ToString());
             //Evaluation eval2 = new Evaluation("evaluation1", 1, 1, "status", "impactscope", "impactcost", "impacttime", "evaltext", "attachment", "ben fisher", DateTime.Now.ToString());
@@ -74,8 +74,8 @@ namespace DoctorDoctor
             //evals.Write(@"C:\Users\benst\Desktop\_XML Tests\evaluations.xml");
 
 
-            Backcheck bc = Backcheck.Read(@"c:\users\benst\desktop\_xml tests\backcheck.xml");
-            Debug.WriteLine(bc.ToString());
+            //Backcheck bc = Backcheck.Read(@"c:\users\benst\desktop\_xml tests\backcheck.xml");
+            //Debug.WriteLine(bc.ToString());
 
 
 

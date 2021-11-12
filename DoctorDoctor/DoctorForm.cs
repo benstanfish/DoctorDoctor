@@ -59,12 +59,19 @@ namespace DoctorDoctor
             //Evaluation eval = new Evaluation("evaluation1",1,1,"status","impactscope","impactcost","impacttime","evaltext","attachment","ben fisher",DateTime.Now);
             //eval.Write(@"C:\Users\benst\Desktop\_XML Tests\eval.xml");
 
-            //Evaluation newEval = Evaluation.Read(@"C:\Users\benst\Desktop\_XML Tests\eval3.xml");
+            //Evaluation newEval = Evaluation.Read(@"C:\Users\benst\Desktop\_XML Tests\evaluations.xml");
             //Debug.WriteLine(newEval.ToString()); 
 
+            Evaluation eval1 = new Evaluation("evaluation1",1,1,"status","impactscope","impactcost","impacttime","evaltext","attachment","ben fisher",DateTime.Now.ToString());
+            Evaluation eval2 = new Evaluation("evaluation1", 1, 1, "status", "impactscope", "impactcost", "impacttime", "evaltext", "attachment", "ben fisher", DateTime.Now.ToString());
+            Evaluation eval3 = new Evaluation("evaluation1", 1, 1, "status", "impactscope", "impactcost", "impacttime", "evaltext", "attachment", "ben fisher", DateTime.Now.ToString());
+            List<Evaluation> evaluations = new List<Evaluation>();
+            evaluations.Add(eval1);
+            evaluations.Add(eval2);
+            evaluations.Add(eval3);
 
-
-
+            Evaluations evals = new Evaluations(evaluations);
+            evals.Write(@"C:\Users\benst\Desktop\_XML Tests\evaluations.xml");
         }
 
 

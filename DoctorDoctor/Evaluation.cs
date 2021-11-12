@@ -17,6 +17,7 @@ namespace DoctorDoctor
         public int id { get; set; }
         [XmlElement(ElementName ="comment")]
         public int commentId { get; set; } // Corresponding Comment ID
+        [XmlElement]
         public string status { get; set; }
         public string impactScope { get; set; }
         public string impactCost { get; set; }

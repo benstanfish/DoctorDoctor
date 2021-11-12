@@ -62,16 +62,25 @@ namespace DoctorDoctor
             //Evaluation newEval = Evaluation.Read(@"C:\Users\benst\Desktop\_XML Tests\evaluations.xml");
             //Debug.WriteLine(newEval.ToString()); 
 
-            Evaluation eval1 = new Evaluation("evaluation1",1,1,"status","impactscope","impactcost","impacttime","evaltext","attachment","ben fisher",DateTime.Now.ToString());
-            Evaluation eval2 = new Evaluation("evaluation1", 1, 1, "status", "impactscope", "impactcost", "impacttime", "evaltext", "attachment", "ben fisher", DateTime.Now.ToString());
-            Evaluation eval3 = new Evaluation("evaluation1", 1, 1, "status", "impactscope", "impactcost", "impacttime", "evaltext", "attachment", "ben fisher", DateTime.Now.ToString());
-            List<Evaluation> evaluations = new List<Evaluation>();
-            evaluations.Add(eval1);
-            evaluations.Add(eval2);
-            evaluations.Add(eval3);
+            //Evaluation eval1 = new Evaluation("evaluation1",1,1,"status","impactscope","impactcost","impacttime","evaltext","attachment","ben fisher",DateTime.Now.ToString());
+            //Evaluation eval2 = new Evaluation("evaluation1", 1, 1, "status", "impactscope", "impactcost", "impacttime", "evaltext", "attachment", "ben fisher", DateTime.Now.ToString());
+            //Evaluation eval3 = new Evaluation("evaluation1", 1, 1, "status", "impactscope", "impactcost", "impacttime", "evaltext", "attachment", "ben fisher", DateTime.Now.ToString());
+            //List<Evaluation> evaluations = new List<Evaluation>();
+            //evaluations.Add(eval1);
+            //evaluations.Add(eval2);
+            //evaluations.Add(eval3);
 
-            Evaluations evals = new Evaluations(evaluations);
-            evals.Write(@"C:\Users\benst\Desktop\_XML Tests\evaluations.xml");
+            //Evaluations evals = new Evaluations(evaluations);
+            //evals.Write(@"C:\Users\benst\Desktop\_XML Tests\evaluations.xml");
+
+
+            Backcheck bc = Backcheck.Read(@"c:\users\benst\desktop\_xml tests\backcheck.xml");
+            Debug.WriteLine(bc.ToString());
+
+
+
+
+
         }
 
 

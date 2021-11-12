@@ -21,18 +21,7 @@ namespace DoctorDoctor
             Comment cmt = Comment.ReadFromFile(CommentPath);
             ProjNet projNet = ProjNet.ReadFromFile(ProjNetPath);
 
-            //propertyGrid1.SelectedObject = eval;
-
-            //foreach(Comment comment in projNet.Comments)
-            //{
-            //    //listBox1.Items.Add(comment.ToString());
-
-            //}
-
-            //foreach(Comment comment in projNet.Comments)
-            //{
-
-            //}
+            propertyGrid1.SelectedObject = projNet.DoctorChecks;
 
             treeView1.Nodes.Clear();
 
@@ -54,8 +43,6 @@ namespace DoctorDoctor
                 }
             }
 
-            
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -66,8 +53,8 @@ namespace DoctorDoctor
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            //MessageBox.Show(treeView1.SelectedNode.ToString());
-            propertyGrid1.SelectedObject = treeView1.SelectedNode;
+            //propertyGrid1.SelectedObject = treeView1.SelectedNode;
         }
+
     }
 }

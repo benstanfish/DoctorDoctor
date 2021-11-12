@@ -30,9 +30,11 @@ namespace DoctorDoctor
         [XmlElement(ElementName = "status")]
         public string Status { get; set; }
 
-        [XmlElement(ElementName ="evaluations")]
+        [XmlArray(ElementName ="evaluations")]
+        [XmlArrayItem("evaluation")]
         public List<Evaluation> Evaluations { get; set; }
-        [XmlElement(ElementName = "backchecks")]
+        [XmlArray(ElementName = "backchecks")]
+        [XmlArrayItem("backcheck")]
         public List<Backcheck> Backchecks { get; set; }
 
         public Comment()

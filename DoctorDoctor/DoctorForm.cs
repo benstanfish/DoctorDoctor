@@ -6,6 +6,7 @@ namespace DoctorDoctor
     public partial class DoctorForm : Form
     {
 
+
         public DoctorForm()
         {
             InitializeComponent();
@@ -53,6 +54,8 @@ namespace DoctorDoctor
                 }
             }
 
+            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -63,7 +66,8 @@ namespace DoctorDoctor
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            MessageBox.Show(treeView1.SelectedNode.ToString());
+            //MessageBox.Show(treeView1.SelectedNode.ToString());
+            propertyGrid1.SelectedObject = treeView1.SelectedNode;
         }
     }
 }

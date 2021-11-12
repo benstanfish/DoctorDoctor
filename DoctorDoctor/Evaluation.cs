@@ -54,7 +54,7 @@ namespace DoctorDoctor
             CreatedOn = createdOn;
         }
 
-        public void Write(string filePath)
+        public void WriteToFile(string filePath)
         {
             var xml = new XmlSerializer(typeof(Evaluation));
             if (File.Exists(filePath))
@@ -64,7 +64,7 @@ namespace DoctorDoctor
             writer.Close();
         }
 
-        public static Evaluation Read(string filePath)
+        public static Evaluation ReadFromFile(string filePath)
         {
             var xml = new XmlSerializer(typeof(Evaluation));
             using (var reader = new StreamReader(filePath))
@@ -86,7 +86,7 @@ namespace DoctorDoctor
             $"EvaluationText: {EvaluationText}\n" +
             $"Attachment: {Attachment}\n" +
             $"CreatedBy: {CreatedBy}\n" +
-            $"CreatedOn: {CreatedOn}\n" + $"-------------------------"
+            $"CreatedOn: {CreatedOn}\n"
             ;
         }
 

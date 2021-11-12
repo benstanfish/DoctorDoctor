@@ -32,7 +32,7 @@ namespace DoctorDoctor
             return Comments.Count;
         }
 
-        public void Write(string filePath)
+        public void WriteToFile(string filePath)
         {
             var xml = new XmlSerializer(typeof(ProjNet));
             if (File.Exists(filePath))
@@ -42,7 +42,7 @@ namespace DoctorDoctor
             writer.Close();
         }
 
-        public static ProjNet Read(string filePath)
+        public static ProjNet ReadFromFile(string filePath)
         {
             var xml = new XmlSerializer(typeof(ProjNet));
             using (var reader = new StreamReader(filePath))
@@ -53,7 +53,7 @@ namespace DoctorDoctor
 
         public override string ToString()
         {
-            string docChecks = $"---- ProjNet Object ----\n" + this.DoctorChecks.ToString();
+            string docChecks = $"----- ProjNet Object -----\n" + this.DoctorChecks.ToString();
             return docChecks + "\nComment Count: " + CommentCount() + "\n";
         }
     }

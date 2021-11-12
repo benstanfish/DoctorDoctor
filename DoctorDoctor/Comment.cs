@@ -71,7 +71,7 @@ namespace DoctorDoctor
             return Backchecks.Count;
         }
 
-        public void Write(string filePath)
+        public void WriteToFile(string filePath)
         {
             var xml = new XmlSerializer(typeof(Comment));
             if (File.Exists(filePath))
@@ -81,7 +81,7 @@ namespace DoctorDoctor
             writer.Close();
         }
 
-        public static Comment Read(string filePath)
+        public static Comment ReadFromFile(string filePath)
         {
             var xml = new XmlSerializer(typeof(Comment));
             using (var reader = new StreamReader(filePath))

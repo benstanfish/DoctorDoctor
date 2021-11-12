@@ -99,30 +99,6 @@ namespace DoctorDoctor
         }
 
 
-        public static void XMLSerialize(Type dataType, object data, string filePath)
-        {
-            var xml = new XmlSerializer(dataType);
-            if(File.Exists(filePath))
-                File.Delete(filePath);
-            var writer = new StreamWriter(filePath);
-            xml.Serialize(writer, data);
-            writer.Close();
-        }
-
-
-        
-        //public object XmlDeserialize(Type dataType, string filePath)
-        //{
-        //    object obj = null;
-        //    var xml = new XmlSerializer(dataType);
-        //    if (File.Exists(filePath))
-        //    {
-        //        var tr = new StreamReader(filePath);
-        //        obj = xml.Deserialize(tr);
-        //        tr.Close();
-        //    }
-        //    return obj;
-        //}
         /// <summary>
         /// Function to write the contents of a string array back to the file where it came from.
         /// </summary>
@@ -368,65 +344,6 @@ namespace DoctorDoctor
 
             return lines;
         }
-
-
-
-
-
-        //public static void DumpClass(object thing)
-        //{
-        //    string usersDesktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-        //    string fileName = usersDesktop + @"\Project Serialize\XML_Serialize_List";
-        //    using (FileStream stream = new FileStream(fileName, FileMode.OpenOrCreate))
-        //    {
-        //        XmlSerializer xml = new XmlSerializer(typeof(List<AThing>));
-        //        xml.Serialize(stream, thing);
-        //    }
-
-
-        //}
-
-        //// Utility Methods
-        //public static void CreateProgramDirectory()
-        //{
-        //    string projectDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\Project Serialize\";
-        //    Directory.CreateDirectory(projectDirectory);
-        //}
-
-
-        //// [Serializable]   // This directive is only required for non-XML serialization
-        //public class AThing
-        //{
-        //    [XmlAttribute]
-        //    public int ID { get; set; }
-        //    [XmlElement]
-        //    public string FirstName { get; set; }
-        //    public string LastName { get; set; }
-        //    public int FavoriteInteger { get; set; }
-
-        //    public void SaveObject(string fileName)
-        //    {
-        //        using (FileStream stream = new FileStream(fileName, FileMode.Append))
-        //        {
-        //            XmlSerializer xml = new XmlSerializer(typeof(AThing));
-        //            xml.Serialize(stream, this);
-        //        }
-        //    }
-
-        //    public static AThing LoadFromFile(string fileName)
-        //    {
-        //        using (FileStream stream = new FileStream(fileName, FileMode.Open))
-        //        {
-        //            XmlSerializer xml = new XmlSerializer(typeof(AThing));
-        //            return (AThing)xml.Deserialize(stream);
-        //        }
-        //    }
-
-        //}
-
-
-
-
 
 
     }

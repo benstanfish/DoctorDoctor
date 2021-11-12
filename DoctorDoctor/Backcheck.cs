@@ -48,7 +48,7 @@ namespace DoctorDoctor
 
 
 
-        public void Write(string filePath)
+        public void WriteToFile(string filePath)
         {
             var xml = new XmlSerializer(typeof(Backcheck));
             if (File.Exists(filePath))
@@ -58,7 +58,7 @@ namespace DoctorDoctor
             writer.Close();
         }
 
-        public static Backcheck Read(string filePath)
+        public static Backcheck ReadFromFile(string filePath)
         {
             var xml = new XmlSerializer(typeof(Backcheck));
             using (var reader = new StreamReader(filePath))
@@ -69,7 +69,7 @@ namespace DoctorDoctor
 
         public override string ToString()
         {
-            return $"--- Backcheck Object ---\n" +
+            return $"---- Backcheck Object ----\n" +
             $"Name: {Name}\n" +
             $"Id: {Id}\n" +
             $"CommentId: {CommentId}\n" +
@@ -78,7 +78,7 @@ namespace DoctorDoctor
             $"BackcheckText: {BackcheckText}\n" +
             $"Attachment: {Attachment}\n" +
             $"CreatedBy: {CreatedBy}\n" +
-            $"CreatedOn: {CreatedOn}\n" + $"-------------------------";
+            $"CreatedOn: {CreatedOn}\n";
         }
     }
 }

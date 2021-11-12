@@ -67,9 +67,10 @@ namespace DoctorDoctor
 
         public override string ToString()
         {
-            return $"Name: {name}\n" +
+            return $"--- Evaluation Object ---\n" +
+            $"Name: {name}\n" +
             $"Id: {id}\n" +
-            $"CommentId {commentId}\n" +
+            $"CommentId: {commentId}\n" +
             $"Status: {status}\n" +
             $"ImpactScope: {impactScope}\n" +
             $"ImpactCost: {impactCost}\n" +
@@ -77,7 +78,8 @@ namespace DoctorDoctor
             $"EvaluationText: {evaluationText}\n" +
             $"Attachment: {attachment}\n" +
             $"CreatedBy: {createdBy}\n" +
-            $"CreatedOn: {createdOn}";
+            $"CreatedOn: {createdOn}\n" + $"-------------------------"
+            ;
         }
 
 

@@ -59,8 +59,8 @@ namespace DoctorDoctor
             //Evaluation eval = new Evaluation("evaluation1",1,1,"status","impactscope","impactcost","impacttime","evaltext","attachment","ben fisher",DateTime.Now);
             //eval.Write(@"C:\Users\benst\Desktop\_XML Tests\eval.xml");
 
-            Evaluation newEval = Evaluation.Read(@"C:\Users\benst\Desktop\_XML Tests\evaluation2.xml");
-            Debug.WriteLine(newEval.ToString()); 
+            //Evaluation newEval = Evaluation.Read(@"C:\Users\benst\Desktop\_XML Tests\eval3.xml");
+            //Debug.WriteLine(newEval.ToString()); 
 
 
 

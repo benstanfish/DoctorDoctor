@@ -107,8 +107,7 @@ namespace DoctorDoctor
             $"Status: {Status}\n" +
             $"Discipline: {Discipline}\n" +
             $"Evaluations: {EvaluationCount()}\n" +
-            $"Backchecks: {BackcheckCount()}\n" +
-            $"-------------------------"
+            $"Backchecks: {BackcheckCount()}\n"
             ;
         }
     }

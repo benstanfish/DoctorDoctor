@@ -79,9 +79,13 @@ namespace DoctorDoctor
 
             //comment.Write(@"c:\users\benst\desktop\_xml tests\comment_new.xml");
 
-            DrChecks dc = DrChecks.Read(@"c:\users\benst\desktop\_xml tests\drchecks.xml");
-            Debug.WriteLine(dc.ToString()); 
+            //DrChecks dc = DrChecks.Read(@"c:\users\benst\desktop\_xml tests\drchecks.xml");
+            //Debug.WriteLine(dc.ToString()); 
 
+
+            ProjNet pn = ProjNet.Read(@"c:\users\benst\desktop\_xml tests\projnet.xml");
+            MessageBox.Show(pn.ToString());
+            pn.Write(@"c:\users\benst\desktop\_xml tests\projnet_new.xml");
         }
 
 

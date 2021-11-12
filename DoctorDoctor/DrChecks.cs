@@ -56,13 +56,12 @@ namespace DoctorDoctor
 
         public override string ToString()
         {
-            return $"--- Evaluation Object ---\n" +
+            return $"--- DrChecks Object ---\n" +
             $"ProjectID: {ProjectId}\n" +
             $"ProjectControlNbr: {ProjectControlNbr}\n" +
             $"ProjectName: {ProjectName}\n" +
             $"ReviewID: {ReviewId}\n" +
-            $"ReviewName: {ReviewName}\n" +
-            $"-------------------------"
+            $"ReviewName: {ReviewName}\n"
             ;
         }
     }

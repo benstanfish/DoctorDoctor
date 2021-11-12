@@ -30,10 +30,10 @@ namespace DoctorDoctor
         [XmlElement(ElementName = "status")]
         public string Status { get; set; }
 
-        [XmlElement("evaluations")]
-        public List<Evaluation> EvaluationList { get; set; }
-        [XmlElement("backchecks")]
-        public List<Backcheck> BackcheckList { get; set; }
+        [XmlElement(ElementName ="evaluations")]
+        public List<Evaluation> Evaluations { get; set; }
+        [XmlElement(ElementName = "backchecks")]
+        public List<Backcheck> Backchecks { get; set; }
 
         public Comment()
         {
@@ -56,17 +56,17 @@ namespace DoctorDoctor
             CreatedOn = createdOn;
             Discipline = discipline;
             Status = status;
-            EvaluationList = evaluations;
-            BackcheckList = backchecks;
+            Evaluations = evaluations;
+            Backchecks = backchecks;
         }
 
         public int EvaluationCount()
         {
-            return EvaluationList.Count;
+            return Evaluations.Count;
         }
         public int BackcheckCount()
         {
-            return BackcheckList.Count;
+            return Backchecks.Count;
         }
 
         public void Write(string filePath)

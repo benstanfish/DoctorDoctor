@@ -92,23 +92,24 @@ namespace DoctorDoctor
 
         public override string ToString()
         {
-            return $"----- Comment Object -----\n" +
+            return this.Id.ToString();
+            //return $"----- Comment Object -----\n" +
 
-            $"Id: {Id}\n" +
-            $"Spec: {Spec}\n" +
-            $"Sheet: {Sheet}\n" +
-            $"Detail: {Detail}\n" +
-            $"Critical: {Critical}\n" +
-            $"CommentText: {CommentText}\n" +
-            $"Attachment: {Attachment}\n" +
-            $"DocRef: {DocRef}\n" +
-            $"CreatedBy: {CreatedBy}\n" +
-            $"CreatedOn: {CreatedOn}\n" +
-            $"Status: {Status}\n" +
-            $"Discipline: {Discipline}\n" +
-            $"Evaluations: {EvaluationCount()}\n" +
-            $"Backchecks: {BackcheckCount()}\n"
-            ;
+            //$"Id: {Id}\n" +
+            //$"Spec: {Spec}\n" +
+            //$"Sheet: {Sheet}\n" +
+            //$"Detail: {Detail}\n" +
+            //$"Critical: {Critical}\n" +
+            //$"CommentText: {CommentText}\n" +
+            //$"Attachment: {Attachment}\n" +
+            //$"DocRef: {DocRef}\n" +
+            //$"CreatedBy: {CreatedBy}\n" +
+            //$"CreatedOn: {CreatedOn}\n" +
+            //$"Status: {Status}\n" +
+            //$"Discipline: {Discipline}\n" +
+            //$"Evaluations: {EvaluationCount()}\n" +
+            //$"Backchecks: {BackcheckCount()}\n"
+            //;
         }
     }
 }

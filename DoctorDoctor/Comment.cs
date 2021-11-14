@@ -1,4 +1,5 @@
-﻿using System.Xml.Serialization;
+﻿using System.ComponentModel;
+using System.Xml.Serialization;
 
 namespace DoctorDoctor
 {
@@ -30,9 +31,11 @@ namespace DoctorDoctor
         [XmlElement(ElementName = "status")]
         public string Status { get; set; }
 
+        [Browsable(false)]
         [XmlArray(ElementName ="evaluations")]
         [XmlArrayItem("evaluation")]
         public List<Evaluation> Evaluations { get; set; }
+        [Browsable(false)]
         [XmlArray(ElementName = "backchecks")]
         [XmlArrayItem("backcheck")]
         public List<Backcheck> Backchecks { get; set; }

@@ -31,6 +31,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.treeView1 = new System.Windows.Forms.TreeView();
+            this.propertyGrid2 = new System.Windows.Forms.PropertyGrid();
             this.SuspendLayout();
             // 
             // button1
@@ -49,10 +50,11 @@
             this.propertyGrid1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.propertyGrid1.HelpVisible = false;
             this.propertyGrid1.Location = new System.Drawing.Point(352, 12);
             this.propertyGrid1.Name = "propertyGrid1";
             this.propertyGrid1.PropertySort = System.Windows.Forms.PropertySort.NoSort;
-            this.propertyGrid1.Size = new System.Drawing.Size(778, 200);
+            this.propertyGrid1.Size = new System.Drawing.Size(687, 170);
             this.propertyGrid1.TabIndex = 1;
             this.propertyGrid1.ToolbarVisible = false;
             // 
@@ -67,12 +69,22 @@
             this.treeView1.TabIndex = 2;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
+            // propertyGrid2
+            // 
+            this.propertyGrid2.HelpVisible = false;
+            this.propertyGrid2.Location = new System.Drawing.Point(352, 188);
+            this.propertyGrid2.Name = "propertyGrid2";
+            this.propertyGrid2.Size = new System.Drawing.Size(687, 391);
+            this.propertyGrid2.TabIndex = 3;
+            this.propertyGrid2.ToolbarVisible = false;
+            // 
             // DoctorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1151, 591);
+            this.Controls.Add(this.propertyGrid2);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.propertyGrid1);
             this.Controls.Add(this.button1);
@@ -88,5 +100,6 @@
         private Button button1;
         private PropertyGrid propertyGrid1;
         private TreeView treeView1;
+        private PropertyGrid propertyGrid2;
     }
 }

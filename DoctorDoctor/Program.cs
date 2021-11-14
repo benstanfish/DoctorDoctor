@@ -9,8 +9,13 @@ namespace DoctorDoctor
         static void Main()
         {
             ApplicationConfiguration.Initialize();
+
+            
             Application.Run(new DoctorForm());
             
+
+
+
         }
     }
 

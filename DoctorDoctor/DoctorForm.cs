@@ -44,6 +44,27 @@ namespace DoctorDoctor
                 }
             }
 
+            int l = 0;
+            treeView2.Nodes.Clear();
+            for(int i = 0; i < 2; i++)
+            {
+                treeView2.Nodes.Add(l.ToString());
+                l++;
+                for(int j = 0; j < 2; j++)
+                {
+                    treeView2.Nodes[i].Nodes.Add(l.ToString());
+                    l++;
+                    for(int k = 0; k < 2; k++)
+                    {
+                        treeView2.Nodes[i].Nodes[j].Nodes.Add(l.ToString());
+                        l++;
+                    }
+                }
+            }
+
+
+
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -57,6 +78,24 @@ namespace DoctorDoctor
             propertyGrid2.SelectedObject = pn.Comments[treeView1.SelectedNode.Index];
            
         }
+
+        private void treeView2_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            int nodeIndex = treeView2.SelectedNode.Index;
+            string parentIndex = "null";
+            if (treeView2.SelectedNode.Parent != null)
+            {
+                parentIndex = treeView2.SelectedNode.Parent.Index.ToString();
+            }
+            string report = $"Node at index of: {nodeIndex}\n" +
+                            $"Node levels is: {treeView2.SelectedNode.Level.ToString()}\n" +
+                            $"Parent node at index of: {parentIndex}";
+            Debug.WriteLine(report);
+        }
+
+        
+
+
 
     }
 }

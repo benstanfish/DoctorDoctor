@@ -1,5 +1,6 @@
 using System.Xml.Serialization;
 using System.Diagnostics;
+using System.Text;
 
 namespace DoctorDoctor
 {
@@ -31,7 +32,8 @@ namespace DoctorDoctor
                 treeView1.Nodes.Add(new TreeNode(comment.ToString()));
                 if (comment.Status.ToLower() == "open")
                 {
-                    treeView1.Nodes[pn.Comments.IndexOf(comment)].ForeColor = Color.Red;  
+                    treeView1.Nodes[pn.Comments.IndexOf(comment)].ForeColor = Color.Red;
+                    treeView1.Nodes[pn.Comments.IndexOf(comment)].Expand();
                 }
 
                 foreach(Evaluation evaluation in comment.Evaluations)
@@ -62,7 +64,7 @@ namespace DoctorDoctor
                 }
             }
 
-
+            treeView2.ExpandAll();
 
 
         }
@@ -81,19 +83,58 @@ namespace DoctorDoctor
 
         private void treeView2_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            int nodeIndex = treeView2.SelectedNode.Index;
-            string parentIndex = "null";
-            if (treeView2.SelectedNode.Parent != null)
-            {
-                parentIndex = treeView2.SelectedNode.Parent.Index.ToString();
-            }
-            string report = $"Node at index of: {nodeIndex}\n" +
-                            $"Node levels is: {treeView2.SelectedNode.Level.ToString()}\n" +
-                            $"Parent node at index of: {parentIndex}";
-            Debug.WriteLine(report);
+            //int nodeIndex = treeView2.SelectedNode.Index;
+            //string parentIndex = "null";
+            //if (treeView2.SelectedNode.Parent != null)
+            //{
+            //    parentIndex = treeView2.SelectedNode.Parent.Index.ToString();
+            //}
+            //string report = $"Node at index of: {nodeIndex}\n" +
+            //                $"Node levels is: {treeView2.SelectedNode.Level.ToString()}\n" +
+            //                $"Parent node at index of: {parentIndex}";
+            //Debug.WriteLine(report);
+            //Debug.WriteLine(GetFamilyTree(treeView2.SelectedNode));
+            Debug.WriteLine(treeView2.SelectedNode.FullPath);
         }
 
-        
+        public static string GetFamilyTree(TreeNode n)
+        {
+            int index = n.Index;
+            int level = n.Level;
+            string s = string.Empty;
+            return s;
+
+            //switch (level)
+            //{
+            //    case 0:
+            //        s = $"Node index {index} at level {level}.\n";
+            //        break;
+            //    case 1:
+            //        s = $"Node index {index} at level {level}.\n" +
+            //            $"Parent index {n.Parent.Index} at level {n.Parent.Level}\n";
+            //        break;
+            //    default:
+            //        s = $"Node index {index} at level {level}.\n" +
+            //            $"Parent index {n.Parent.Index} at level {n.Parent.Level}\n" +
+            //            $"Grandparent index {n.Parent.Parent.Index} at level {n.Parent.Parent.Level}\n";
+            //        break;
+            //}
+
+            //string r = string.Empty;
+            //string[] heritage = new string[n.Level];
+            //for(int j = n.Level; j > 0; j--)
+            //{
+            //    r += ".Parent";
+            //    string getIndex = "n" + r + ".Index";
+            //    heritage[j] = $"{getIndex}";
+            //}
+
+
+            //return r = string.Join(",", heritage);
+
+
+            //return s;
+        }
 
 
 

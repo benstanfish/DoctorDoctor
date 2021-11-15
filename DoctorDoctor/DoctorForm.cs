@@ -83,6 +83,7 @@ namespace DoctorDoctor
                             if(c.Id.ToString() == fullAddy[1].ToString())
                             {
                                 propertyGrid2.SelectedObject = c;
+                                textBoxComments.Text = c.CommentText;
                             }
                         }
                         break;
@@ -96,6 +97,7 @@ namespace DoctorDoctor
                                     if(eval.Name == fullAddy[2].ToString())
                                     {
                                         propertyGrid2.SelectedObject = eval;
+                                        textBoxComments.Text = eval.EvaluationText;
                                     }
                                 }
                                 foreach(Backcheck bc in c.Backchecks)
@@ -103,6 +105,7 @@ namespace DoctorDoctor
                                     if(bc.Name == fullAddy[2].ToString())
                                     {
                                         propertyGrid2.SelectedObject = bc;
+                                        textBoxComments.Text = bc.BackcheckText;
                                     }
                                 }
                             }
@@ -121,11 +124,6 @@ namespace DoctorDoctor
         }
 
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            string disc = string.Join("\n", pn.GetDisciplines());
-            MessageBox.Show(disc);
-        }
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -138,9 +136,5 @@ namespace DoctorDoctor
             treeView1.CollapseAll();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
     }
 }

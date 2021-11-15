@@ -6,10 +6,10 @@ namespace DoctorDoctor
 {
     public partial class DoctorForm : Form
     {
-        
+
         public ProjNet pn = ProjNet.ReadFromFile(@"C:\Users\benst\Desktop\_XML Tests\projnet - Copy.xml");
 
-
+        //public ProjNet pn = new ProjNet();
 
 
         public DoctorForm()
@@ -27,7 +27,7 @@ namespace DoctorDoctor
             //ProjNet projNet = ProjNet.ReadFromFile(ProjNetPath);
 
             propertyGrid1.SelectedObject = pn.DoctorChecks;
-            propertyGrid1.HorizontalScroll.Enabled = true;
+            
 
 
             treeView1.Nodes.Clear();
@@ -59,6 +59,7 @@ namespace DoctorDoctor
                         treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes[treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes.IndexOf(node)].Nodes[backcheck.Id.ToString()].BackColor = Color.LightCyan;
                 }
             }
+
 
 
         }
@@ -123,7 +124,21 @@ namespace DoctorDoctor
             }
         }
 
+        public static void LoadProject()
+        {   
 
+            try
+            {
+                string path = Helper.GetFilePath();
+                
+            }
+            catch (Exception)
+            {
+                
+                
+            }
+            
+        }
 
         private void button3_Click(object sender, EventArgs e)
         {

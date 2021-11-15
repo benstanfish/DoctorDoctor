@@ -44,11 +44,20 @@ namespace DoctorDoctor
 
         public static ProjNet ReadFromFile(string filePath)
         {
-            var xml = new XmlSerializer(typeof(ProjNet));
-            using (var reader = new StreamReader(filePath))
+            try
             {
-                return (ProjNet)xml.Deserialize(reader);
+                var xml = new XmlSerializer(typeof(ProjNet));
+                using (var reader = new StreamReader(filePath))
+                {
+                    return (ProjNet)xml.Deserialize(reader);
+                }
             }
+            catch (Exception)
+            {
+                MessageBox.Show(text: "File type not recognized.", caption: "File Type Error");
+                return new ProjNet();
+            }
+            
         }
 
         public override string ToString()

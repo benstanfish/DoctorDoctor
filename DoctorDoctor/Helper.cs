@@ -101,6 +101,7 @@ namespace DoctorDoctor
 
         public static string[] ReplaceXMLLineBreaks(string[] lines)
         {
+            //TODO: This function may not be that helpful - consider deletion.
             string findMe = "&lt;br /&gt;";
             Regex rx = new Regex(findMe);
             for (int i = 0; i < lines.Length; i++)

@@ -46,7 +46,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.fileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -139,8 +138,7 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.settingsToolStripMenuItem,
-            this.exitToolStripMenuItem,
-            this.fileToolStripMenuItem1});
+            this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
             this.fileToolStripMenuItem.Text = "File";
@@ -216,12 +214,6 @@
             this.label4.TabIndex = 13;
             this.label4.Text = "Comment Text";
             // 
-            // fileToolStripMenuItem1
-            // 
-            this.fileToolStripMenuItem1.Name = "fileToolStripMenuItem1";
-            this.fileToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
-            this.fileToolStripMenuItem1.Text = "File";
-            // 
             // DoctorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -273,6 +265,5 @@
         private Label label2;
         private Label label3;
         private Label label4;
-        private ToolStripMenuItem fileToolStripMenuItem1;
     }
 }

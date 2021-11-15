@@ -11,36 +11,37 @@ namespace DoctorDoctor
     [XmlRoot(ElementName ="evaluation")]
     public class Evaluation
     {
+        [Category("0 ID")]
         [XmlAttribute(AttributeName = "name")]
         public string Name { get; set; }
-        [Category("ID")]
+        [Category("0 ID")]
         [XmlElement(ElementName = "id")]
         public int Id { get; set; }
-        [Category("ID")]
+        [Category("0 ID")]
         [XmlElement(ElementName = "comment")]
         public int CommentId { get; set; }
-        [Category("Status")]
+        [Category("1 Status")]
         [XmlElement(ElementName = "status")]
         public string Status { get; set; }
-        [Category("Impact")]
+        [Category("5 Impact")]
         [XmlElement(ElementName = "impactScope")]
         public string ImpactScope { get; set; }
-        [Category("Impact")]
+        [Category("5 Impact")]
         [XmlElement(ElementName = "impactCost")]
         public string ImpactCost { get; set; }
-        [Category("Impact")]
+        [Category("5 Impact")]
         [XmlElement(ElementName = "impactTime")]
         public string ImpactTime { get; set; }
-        [Category("Content")]
+        [Category("4 Content")]
         [XmlElement(ElementName ="evaluationText")]
         public string EvaluationText { get; set; }
-        [Category("Content")]
+        [Category("4 Content")]
         [XmlElement(ElementName = "attachment")]
         public string Attachment { get; set; }
-        [Category("Authorship")]
+        [Category("2 Authorship")]
         [XmlElement(ElementName = "createdBy")]
         public string CreatedBy { get; set; }
-        [Category("Authorship")]
+        [Category("2 Authorship")]
         [XmlElement(ElementName = "createdOn")]
         public string CreatedOn { get; set; }
 

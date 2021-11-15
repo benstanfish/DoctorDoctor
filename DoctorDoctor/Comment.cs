@@ -6,40 +6,40 @@ namespace DoctorDoctor
     [XmlRoot(ElementName ="comment")]
     public class Comment
     {
-        [Category("ID")]
+        [Category("0 ID")]
         [XmlElement(ElementName = "id")]
         public int Id { get; set; }
-        [Category("Reference")]
+        [Category("3 Reference")]
         [XmlElement(ElementName = "spec")]
         public string Spec { get; set; }
-        [Category("Reference")]
+        [Category("3 Reference")]
         [XmlElement(ElementName = "sheet")]
         public string Sheet { get; set; }
-        [Category("Reference")]
+        [Category("3 Reference")]
         [XmlElement(ElementName = "detail")]
         public string Detail { get; set; }
-        [Category("Status")]
+        [Category("1 Status")]
         [XmlElement(ElementName = "critical")]
         public string Critical { get; set; }
-        [Category("Content")]
+        [Category("4 Content")]
         [XmlElement(ElementName = "commentText")]
         public string CommentText { get; set; }
-        [Category("Content")]
+        [Category("4 Content")]
         [XmlElement(ElementName = "attachment")]
         public string Attachment { get; set; }
-        [Category("Reference")]
+        [Category("3 Reference")]
         [XmlElement(ElementName = "DocRef")]
         public string DocRef { get; set; }
-        [Category("Authorship")]
+        [Category("2 Authorship")]
         [XmlElement(ElementName = "createdBy")]
         public string CreatedBy { get; set; }
-        [Category("Authorship")]
+        [Category("2 Authorship")]
         [XmlElement(ElementName ="createdOn")]
         public string CreatedOn { get; set; }
-        [Category("ID")]
+        [Category("0 ID")]
         [XmlElement(ElementName = "Discipline")]
         public string Discipline { get; set; }
-        [Category("Status")]
+        [Category("1 Status")]
         [XmlElement(ElementName = "status")]
         public string Status { get; set; }
 

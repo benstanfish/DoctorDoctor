@@ -136,5 +136,9 @@ namespace DoctorDoctor
             treeView1.CollapseAll();
         }
 
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

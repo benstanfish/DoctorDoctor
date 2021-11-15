@@ -46,6 +46,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.listBoxProjects = new System.Windows.Forms.ListBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,9 +77,9 @@
             // 
             // treeView1
             // 
-            this.treeView1.Location = new System.Drawing.Point(12, 57);
+            this.treeView1.Location = new System.Drawing.Point(12, 208);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(277, 616);
+            this.treeView1.Size = new System.Drawing.Size(277, 465);
             this.treeView1.TabIndex = 2;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
@@ -169,20 +171,20 @@
             // colorsToolStripMenuItem
             // 
             this.colorsToolStripMenuItem.Name = "colorsToolStripMenuItem";
-            this.colorsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.colorsToolStripMenuItem.Size = new System.Drawing.Size(134, 26);
             this.colorsToolStripMenuItem.Text = "Colors";
             this.colorsToolStripMenuItem.Click += new System.EventHandler(this.colorsToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem1
             // 
             this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
-            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(134, 26);
             this.aboutToolStripMenuItem1.Text = "About";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 34);
+            this.label1.Location = new System.Drawing.Point(12, 185);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(80, 20);
             this.label1.TabIndex = 10;
@@ -193,9 +195,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(295, 34);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(91, 20);
+            this.label2.Size = new System.Drawing.Size(106, 20);
             this.label2.TabIndex = 11;
-            this.label2.Text = "Project Data";
+            this.label2.Text = "XML Metadata";
             // 
             // label3
             // 
@@ -215,12 +217,32 @@
             this.label4.TabIndex = 13;
             this.label4.Text = "Comment Text";
             // 
+            // listBoxProjects
+            // 
+            this.listBoxProjects.FormattingEnabled = true;
+            this.listBoxProjects.ItemHeight = 20;
+            this.listBoxProjects.Location = new System.Drawing.Point(12, 57);
+            this.listBoxProjects.Name = "listBoxProjects";
+            this.listBoxProjects.Size = new System.Drawing.Size(277, 124);
+            this.listBoxProjects.TabIndex = 14;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 34);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(61, 20);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Projects";
+            // 
             // DoctorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1245, 722);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.listBoxProjects);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -266,5 +288,7 @@
         private Label label2;
         private Label label3;
         private Label label4;
+        private ListBox listBoxProjects;
+        private Label label5;
     }
 }

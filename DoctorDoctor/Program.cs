@@ -13,9 +13,6 @@ namespace DoctorDoctor
             
             Application.Run(new DoctorForm());
             
-
-
-
         }
     }
 

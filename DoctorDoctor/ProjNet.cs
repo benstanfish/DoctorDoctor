@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using System.ComponentModel;
 
 namespace DoctorDoctor
 {
@@ -12,7 +13,11 @@ namespace DoctorDoctor
     {
         [XmlElement(ElementName ="DrChecks")]
         public DrChecks DoctorChecks { get; set; }
-        
+
+        [XmlIgnore]
+        [Category("FilePath")]
+        public static string ThisPath {get; set;}
+
         [XmlArray("Comments")]
         [XmlArrayItem("comment")]
         public List<Comment> Comments { get; set; }
@@ -42,29 +47,32 @@ namespace DoctorDoctor
             writer.Close();
         }
 
+
         public static ProjNet ReadFromFile(string filePath)
         {
-            try
+            if(ProjNet.Validate(filePath))
             {
                 var xml = new XmlSerializer(typeof(ProjNet));
                 using (var reader = new StreamReader(filePath))
                 {
+                    ThisPath = filePath;
                     return (ProjNet)xml.Deserialize(reader);
                 }
             }
-            catch (Exception)
+            else
             {
-                MessageBox.Show(text: "File type not recognized.", caption: "File Type Error");
                 return new ProjNet();
             }
             
         }
+
 
         public override string ToString()
         {
             string docChecks = $"----- ProjNet Object -----\n" + this.DoctorChecks.ToString();
             return docChecks + "\nComment Count: " + CommentCount() + "\n";
         }
+
 
         public List<string> GetDisciplines()
         {
@@ -80,6 +88,35 @@ namespace DoctorDoctor
             Disciplines.Sort();                                 //HACK: Alphabetize disciplines
             return Disciplines;
         }
+
+
+        public static bool Validate(string filePath)
+        {
+            bool test = false;
+            ProjNet projNet = null;
+            try
+            {
+                var xml = new XmlSerializer(typeof(ProjNet));
+                using (var reader = new StreamReader(filePath))
+                {
+                    projNet = (ProjNet)xml.Deserialize(reader);
+                    if(projNet != null)
+                        test = true;
+                }
+            }
+            catch (Exception)
+            {
+                test = false;
+            }
+            return test;
+        }
+
+
+        public string GetPath()
+        {
+            return ThisPath;
+        }
+
 
     }
 }

@@ -28,8 +28,6 @@ namespace DoctorDoctor
 
             propertyGrid1.SelectedObject = pn.DoctorChecks;
 
-            
-
             treeView1.Nodes.Clear();
             List<string> Disciplines = pn.GetDisciplines();
             foreach(string str in Disciplines)

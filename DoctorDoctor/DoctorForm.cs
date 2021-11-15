@@ -9,6 +9,9 @@ namespace DoctorDoctor
         
         public ProjNet pn = ProjNet.ReadFromFile(@"C:\Users\benst\Desktop\_XML Tests\projnet.xml");
 
+
+
+
         public DoctorForm()
         {
             InitializeComponent();
@@ -38,14 +41,20 @@ namespace DoctorDoctor
                 //Load treeview with comments as children to discipline nodes
                 TreeNode node = new TreeNode(cmt.Id.ToString());
                 treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes.Add(node);
+                if(cmt.Status.ToLower() != "open")
+                    node.ForeColor = Color.Gray;
 
                 foreach (Evaluation evaluation in cmt.Evaluations)
                 {
                     treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes[treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes.IndexOf(node)].Nodes.Add(evaluation.Id.ToString(), evaluation.Name);
+                    if(evaluation.Status.ToLower() == "concur")
+                        treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes[treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes.IndexOf(node)].Nodes[evaluation.Id.ToString()].BackColor = Color.LightCyan;
                 }
                 foreach (Backcheck backcheck in cmt.Backchecks)
                 {
                     treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes[treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes.IndexOf(node)].Nodes.Add(backcheck.Id.ToString(), backcheck.Name);
+                    if (backcheck.Status.ToLower() == "concur")
+                        treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes[treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes.IndexOf(node)].Nodes[backcheck.Id.ToString()].BackColor = Color.LightCyan;
                 }
             }
 

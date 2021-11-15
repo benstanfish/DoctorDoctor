@@ -10,7 +10,7 @@ namespace DoctorDoctor
         {
             ApplicationConfiguration.Initialize();
 
-            
+            Helper.CreateProjectFolder();
             Application.Run(new DoctorForm());
             
         }

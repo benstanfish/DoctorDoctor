@@ -219,12 +219,14 @@
             // 
             // listBoxProjects
             // 
+            this.listBoxProjects.AllowDrop = true;
             this.listBoxProjects.FormattingEnabled = true;
             this.listBoxProjects.ItemHeight = 20;
             this.listBoxProjects.Location = new System.Drawing.Point(12, 57);
             this.listBoxProjects.Name = "listBoxProjects";
             this.listBoxProjects.Size = new System.Drawing.Size(277, 124);
             this.listBoxProjects.TabIndex = 14;
+            this.listBoxProjects.DragDrop += new System.Windows.Forms.DragEventHandler(this.listBoxProjects_DragDrop);
             // 
             // label5
             // 

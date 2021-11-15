@@ -189,6 +189,18 @@ namespace DoctorDoctor
         }
 
 
+
+        public static string DocumentsFolderPath()
+        {
+            return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        }
+
+        public static void CreateProjectFolder()
+        {
+            string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\DoctorDoctor\";
+            Directory.CreateDirectory(folderPath);
+        }
+
         /// <summary>
         /// Test function for sanitizing File
         /// </summary>

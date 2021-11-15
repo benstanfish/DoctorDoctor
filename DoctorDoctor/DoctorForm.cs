@@ -218,5 +218,10 @@ namespace DoctorDoctor
             csm.Show();
             cs = newCs;
         }
+
+        private void listBoxProjects_DragDrop(object sender, DragEventArgs e)
+        {
+           
+        }
     }
 }

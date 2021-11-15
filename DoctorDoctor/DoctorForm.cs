@@ -7,9 +7,9 @@ namespace DoctorDoctor
     public partial class DoctorForm : Form
     {
 
-        public ProjNet pn = ProjNet.ReadFromFile(@"C:\Users\benst\Desktop\_XML Tests\projnet - Copy.xml");
-
-        //public ProjNet pn = new ProjNet();
+        public ProjNet pn = ProjNet.ReadFromFile(@"C:\Users\benst\Desktop\_XML Tests\projnet.xml");
+        public ColorSettings cs = new ColorSettings();
+        
 
 
         public DoctorForm()
@@ -27,8 +27,8 @@ namespace DoctorDoctor
             //ProjNet projNet = ProjNet.ReadFromFile(ProjNetPath);
 
             propertyGrid1.SelectedObject = pn.DoctorChecks;
-            
 
+            
 
             treeView1.Nodes.Clear();
             List<string> Disciplines = pn.GetDisciplines();
@@ -43,20 +43,63 @@ namespace DoctorDoctor
                 //Load treeview with comments as children to discipline nodes
                 TreeNode node = new TreeNode(cmt.Id.ToString());
                 treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes.Add(node);
-                if(cmt.Status.ToLower() != "open")
-                    node.ForeColor = Color.Gray;
+                //if(cmt.Status.ToLower() != "open")
+                //    node.ForeColor = cs.openComment;
+                switch (cmt.Status.ToLower())
+                {
+                    case "closed":
+                        node.ForeColor = cs.closedComment;
+                        break;
+                    default:
+                        node.ForeColor = cs.openComment;
+                        break;
+                }
 
                 foreach (Evaluation evaluation in cmt.Evaluations)
                 {
                     treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes[treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes.IndexOf(node)].Nodes.Add(evaluation.Id.ToString(), evaluation.Name);
-                    if(evaluation.Status.ToLower() == "concur")
-                        treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes[treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes.IndexOf(node)].Nodes[evaluation.Id.ToString()].BackColor = Color.LightCyan;
+                    //if(evaluation.Status.ToLower() == "concur")
+                    //    treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes[treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes.IndexOf(node)].Nodes[evaluation.Id.ToString()].BackColor = cs.concur;
+                    Color temp = Color.Empty;
+                    switch (evaluation.Status.ToLower())
+                    {
+                        case "concur":
+                            temp = cs.concur;
+                            break;
+                        case "for information only":
+                            temp = cs.forInformationOnly;
+                            break;
+                        case "non-concur":
+                            temp = cs.nonConcur;
+                            break;
+                        default:
+                            temp = cs.checkAndResolve;
+                            break;
+                    }
+                    treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes[treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes.IndexOf(node)].Nodes[evaluation.Id.ToString()].BackColor = temp;
                 }
                 foreach (Backcheck backcheck in cmt.Backchecks)
                 {
                     treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes[treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes.IndexOf(node)].Nodes.Add(backcheck.Id.ToString(), backcheck.Name);
-                    if (backcheck.Status.ToLower() == "concur")
-                        treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes[treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes.IndexOf(node)].Nodes[backcheck.Id.ToString()].BackColor = Color.LightCyan;
+                    //if (backcheck.Status.ToLower() == "concur")
+                    //    treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes[treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes.IndexOf(node)].Nodes[backcheck.Id.ToString()].BackColor = cs.concur;
+                    Color temp = Color.Empty;
+                    switch (backcheck.Status.ToLower())
+                    {
+                        case "concur":
+                            temp = cs.concur;
+                            break;
+                        case "for information only":
+                            temp = cs.forInformationOnly;
+                            break;
+                        case "non-concur":
+                            temp = cs.nonConcur;
+                            break;
+                        default:
+                            temp = cs.checkAndResolve;
+                            break;
+                    }
+                    treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes[treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes.IndexOf(node)].Nodes[backcheck.Id.ToString()].BackColor = temp;
                 }
             }
 
@@ -164,6 +207,15 @@ namespace DoctorDoctor
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Helper.RoundTripConform();
+        }
+
+        private void colorsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ColorSettings newCs = new ColorSettings();
+            ColorSettingsMenu csm = new ColorSettingsMenu();
+            csm.cs = newCs;
+            csm.Show();
+            cs = newCs;
         }
     }
 }

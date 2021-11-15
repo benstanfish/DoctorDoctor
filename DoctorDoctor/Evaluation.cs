@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,27 +11,36 @@ namespace DoctorDoctor
     [XmlRoot(ElementName ="evaluation")]
     public class Evaluation
     {
-
         [XmlAttribute(AttributeName = "name")]
-        public string Name { get; set; } 
+        public string Name { get; set; }
+        [Category("ID")]
         [XmlElement(ElementName = "id")]
         public int Id { get; set; }
+        [Category("ID")]
         [XmlElement(ElementName = "comment")]
         public int CommentId { get; set; }
+        [Category("Status")]
         [XmlElement(ElementName = "status")]
         public string Status { get; set; }
+        [Category("Impact")]
         [XmlElement(ElementName = "impactScope")]
         public string ImpactScope { get; set; }
+        [Category("Impact")]
         [XmlElement(ElementName = "impactCost")]
         public string ImpactCost { get; set; }
+        [Category("Impact")]
         [XmlElement(ElementName = "impactTime")]
         public string ImpactTime { get; set; }
+        [Category("Content")]
         [XmlElement(ElementName ="evaluationText")]
         public string EvaluationText { get; set; }
+        [Category("Content")]
         [XmlElement(ElementName = "attachment")]
         public string Attachment { get; set; }
+        [Category("Authorship")]
         [XmlElement(ElementName = "createdBy")]
         public string CreatedBy { get; set; }
+        [Category("Authorship")]
         [XmlElement(ElementName = "createdOn")]
         public string CreatedOn { get; set; }
 

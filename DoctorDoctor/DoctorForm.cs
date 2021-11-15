@@ -26,50 +26,76 @@ namespace DoctorDoctor
             propertyGrid1.SelectedObject = pn.DoctorChecks;
 
             treeView1.Nodes.Clear();
-
-            foreach (Comment comment in pn.Comments)
+            List<string> Disciplines = pn.GetDisciplines();
+            foreach(string str in Disciplines)
             {
-                treeView1.Nodes.Add(new TreeNode(comment.ToString()));
-                if (comment.Status.ToLower() == "open")
-                {
-                    treeView1.Nodes[pn.Comments.IndexOf(comment)].ForeColor = Color.Red;
-                    treeView1.Nodes[pn.Comments.IndexOf(comment)].Expand();
-                }
+                //Load treeview with Disciplines as root nodes
+                treeView1.Nodes.Add(str, str);      //HACK: It's important to load these nodes with the Discipline name as the Key and the Text!
+            }
 
-                foreach(Evaluation evaluation in comment.Evaluations)
+            foreach(Comment cmt in pn.Comments)
+            {
+                //Load treeview with comments as children to discipline nodes
+                TreeNode node = new TreeNode(cmt.Id.ToString());
+                treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes.Add(node);
+
+                foreach (Evaluation evaluation in cmt.Evaluations)
                 {
-                    treeView1.Nodes[pn.Comments.IndexOf(comment)].Nodes.Add(new TreeNode(evaluation.Name));
+                    treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes[treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes.IndexOf(node)].Nodes.Add(evaluation.Id.ToString(), evaluation.Name);
                 }
-                foreach (Backcheck backcheck in comment.Backchecks)
+                foreach (Backcheck backcheck in cmt.Backchecks)
                 {
-                    treeView1.Nodes[pn.Comments.IndexOf(comment)].Nodes.Add(new TreeNode(backcheck.Name));
+                    treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes[treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes.IndexOf(node)].Nodes.Add(backcheck.Id.ToString(), backcheck.Name);
                 }
             }
 
-            int l = 0;
-            treeView2.Nodes.Clear();
-            for(int i = 0; i < 2; i++)
-            {
-                treeView2.Nodes.Add(l.ToString());
-                l++;
-                for(int j = 0; j < 2; j++)
-                {
-                    treeView2.Nodes[i].Nodes.Add(l.ToString());
-                    l++;
-                    for(int k = 0; k < 2; k++)
-                    {
-                        treeView2.Nodes[i].Nodes[j].Nodes.Add(l.ToString());
-                        l++;
-                    }
-                }
-            }
+            //Debug.WriteLine(treeView1.Nodes.IndexOfKey("Electrical"));
 
-            treeView2.ExpandAll();
+
+
+            //foreach (Comment comment in pn.Comments)
+            //{
+            //    treeView1.Nodes.Add(new TreeNode(comment.ToString()));
+            //    if (comment.Status.ToLower() == "open")
+            //    {
+            //        treeView1.Nodes[pn.Comments.IndexOf(comment)].ForeColor = Color.Red;
+            //        treeView1.Nodes[pn.Comments.IndexOf(comment)].Expand();
+            //    }
+
+            //    foreach(Evaluation evaluation in comment.Evaluations)
+            //    {
+            //        treeView1.Nodes[pn.Comments.IndexOf(comment)].Nodes.Add(new TreeNode(evaluation.Name));
+            //    }
+            //    foreach (Backcheck backcheck in comment.Backchecks)
+            //    {
+            //        treeView1.Nodes[pn.Comments.IndexOf(comment)].Nodes.Add(new TreeNode(backcheck.Name));
+            //    }
+            //}
+
+            //int l = 0;
+            //treeView2.Nodes.Clear();
+            //for(int i = 0; i < 2; i++)
+            //{
+            //    treeView2.Nodes.Add(l.ToString());
+            //    l++;
+            //    for(int j = 0; j < 2; j++)
+            //    {
+            //        treeView2.Nodes[i].Nodes.Add(l.ToString());
+            //        l++;
+            //        for(int k = 0; k < 2; k++)
+            //        {
+            //            treeView2.Nodes[i].Nodes[j].Nodes.Add(l.ToString());
+            //            l++;
+            //        }
+            //    }
+            //}
+
+            //treeView2.ExpandAll();
 
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonClose_Click(object sender, EventArgs e)
         {
             //TODO: This button is a test method.
             this.Close();  
@@ -77,8 +103,35 @@ namespace DoctorDoctor
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            propertyGrid2.SelectedObject = pn.Comments[treeView1.SelectedNode.Index];
-           
+            //propertyGrid2.SelectedObject = pn.Comments[treeView1.SelectedNode.Index];
+            if(treeView1.SelectedNode != null)
+            {
+                int level = treeView1.SelectedNode.Level;
+                string[] fullAddy = treeView1.SelectedNode.FullPath.Split(@"\");
+
+                switch (level)
+                {
+                    case 1:
+                         foreach(Comment c in pn.Comments)
+                        {
+                            if(c.Id.ToString() == fullAddy[1].ToString())
+                            {
+                                propertyGrid2.SelectedObject = c;
+                            }
+                        }
+                        break;
+                    case 2:
+
+
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                propertyGrid2.SelectedObject = null;
+            }
         }
 
         private void treeView2_AfterSelect(object sender, TreeViewEventArgs e)
@@ -136,6 +189,22 @@ namespace DoctorDoctor
             //return s;
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string disc = string.Join("\n", pn.GetDisciplines());
+            MessageBox.Show(disc);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            //TODO: Create expand all at certain level
+            treeView1.ExpandAll();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            treeView1.CollapseAll();
+        }
 
 
     }

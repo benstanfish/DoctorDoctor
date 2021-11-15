@@ -56,5 +56,21 @@ namespace DoctorDoctor
             string docChecks = $"----- ProjNet Object -----\n" + this.DoctorChecks.ToString();
             return docChecks + "\nComment Count: " + CommentCount() + "\n";
         }
+
+        public List<string> GetDisciplines()
+        {
+            //TODO: Use GetDisciplines to create discipline parent nodes in Treeview list
+
+            List<string> NonUnique = new List<string>();
+            List<string> Disciplines = new List<string>();
+            foreach (var comment in Comments)
+            {
+                NonUnique.Add(comment.Discipline);
+            }
+            Disciplines = NonUnique.Distinct().ToList();    
+            Disciplines.Sort();                                 //HACK: Alphabetize disciplines
+            return Disciplines;
+        }
+
     }
 }

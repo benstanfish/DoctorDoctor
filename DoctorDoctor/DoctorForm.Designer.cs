@@ -37,9 +37,9 @@
             this.textBoxComments = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
@@ -52,7 +52,7 @@
             // buttonClose
             // 
             this.buttonClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonClose.Location = new System.Drawing.Point(1139, 714);
+            this.buttonClose.Location = new System.Drawing.Point(1139, 646);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(94, 29);
             this.buttonClose.TabIndex = 0;
@@ -80,6 +80,7 @@
             this.treeView1.Size = new System.Drawing.Size(277, 616);
             this.treeView1.TabIndex = 2;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+            this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
             // 
             // propertyGrid2
             // 
@@ -105,7 +106,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(12, 714);
+            this.button4.Location = new System.Drawing.Point(188, 679);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(101, 29);
             this.button4.TabIndex = 7;
@@ -142,6 +143,20 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
             this.fileToolStripMenuItem.Text = "File";
             // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.settingsToolStripMenuItem.Text = "Load";
+            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -151,29 +166,16 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
             this.aboutToolStripMenuItem.Text = "Settings";
             // 
-            // settingsToolStripMenuItem
-            // 
-            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(125, 26);
-            this.settingsToolStripMenuItem.Text = "Load";
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
             // colorsToolStripMenuItem
             // 
             this.colorsToolStripMenuItem.Name = "colorsToolStripMenuItem";
-            this.colorsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.colorsToolStripMenuItem.Size = new System.Drawing.Size(134, 26);
             this.colorsToolStripMenuItem.Text = "Colors";
             // 
             // aboutToolStripMenuItem1
             // 
             this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
-            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(134, 26);
             this.aboutToolStripMenuItem1.Text = "About";
             // 
             // label1
@@ -216,7 +218,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1245, 755);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(1245, 722);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -229,6 +232,7 @@
             this.Controls.Add(this.propertyGrid1);
             this.Controls.Add(this.buttonClose);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "DoctorForm";
             this.ShowIcon = false;

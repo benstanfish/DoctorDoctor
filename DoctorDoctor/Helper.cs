@@ -99,6 +99,21 @@ namespace DoctorDoctor
         }
 
 
+        public static string[] ReplaceXMLLineBreaks(string[] lines)
+        {
+            string findMe = "&lt;br /&gt;";
+            Regex rx = new Regex(findMe);
+            for (int i = 0; i < lines.Length; i++)
+            {
+                if (rx.IsMatch(lines[i]))
+                {
+                    lines[i] = Regex.Replace(lines[i], findMe, " ");
+                }
+            }
+            return lines;
+        }
+
+
         /// <summary>
         /// Function to write the contents of a string array back to the file where it came from.
         /// </summary>
@@ -124,14 +139,15 @@ namespace DoctorDoctor
         {
             //TODO: Delete debugs
             string filePath = GetFilePath();
-            Debug.WriteLine("File consumed");
+            //Debug.WriteLine("File consumed");
             string[] lines = ConsumeFile(filePath);
             lines = XMLConformer(lines, "evaluation");
-            Debug.WriteLine("\"evaluation\" comformed");
+            //Debug.WriteLine("\"evaluation\" comformed");
             lines = XMLConformer(lines, "backcheck");
-            Debug.WriteLine("\"backcheck\" comformed");
+            //Debug.WriteLine("\"backcheck\" comformed");
+            //lines = ReplaceXMLLineBreaks(lines);
             WriteToFile(lines, filePath);
-            Debug.WriteLine("File write completed.");
+            //Debug.WriteLine("File write completed.");
         }
 
 

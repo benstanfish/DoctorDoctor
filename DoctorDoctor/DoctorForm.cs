@@ -7,7 +7,7 @@ namespace DoctorDoctor
     public partial class DoctorForm : Form
     {
         
-        public ProjNet pn = ProjNet.ReadFromFile(@"C:\Users\benst\Desktop\_XML Tests\projnet.xml");
+        public ProjNet pn = ProjNet.ReadFromFile(@"C:\Users\benst\Desktop\_XML Tests\projnet - Copy.xml");
 
 
 
@@ -139,6 +139,16 @@ namespace DoctorDoctor
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            e.Node.Expand();
+        }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helper.RoundTripConform();
         }
     }
 }

@@ -112,7 +112,7 @@ namespace DoctorDoctor
                 switch (level)
                 {
                     case 1:
-                         foreach(Comment c in pn.Comments)
+                        foreach(Comment c in pn.Comments)
                         {
                             if(c.Id.ToString() == fullAddy[1].ToString())
                             {
@@ -121,7 +121,26 @@ namespace DoctorDoctor
                         }
                         break;
                     case 2:
-
+                        foreach (Comment c in pn.Comments)
+                        {
+                            if (c.Id.ToString() == fullAddy[1].ToString())
+                            {
+                                foreach(Evaluation eval in c.Evaluations)
+                                {
+                                    if(eval.Name == fullAddy[2].ToString())
+                                    {
+                                        propertyGrid2.SelectedObject = eval;
+                                    }
+                                }
+                                foreach(Backcheck bc in c.Backchecks)
+                                {
+                                    if(bc.Name == fullAddy[2].ToString())
+                                    {
+                                        propertyGrid2.SelectedObject = bc;
+                                    }
+                                }
+                            }
+                        }
 
                         break;
                     default:

@@ -7,7 +7,9 @@ namespace DoctorDoctor
     public partial class DoctorForm : Form
     {
 
-        public ProjNet pn = ProjNet.ReadFromFile(@"C:\Users\benst\Desktop\_XML Tests\projnet.xml");
+        //C:\Users\benst\Desktop\_XML Tests\projnet.xml
+        
+        public ProjNet pn = ProjNet.ReadFromFile(@"C:\Users\benst\Desktop\_XML Tests\DrCkXMLReport_520_Concept_G.xml");
         public ColorSettings cs = new ColorSettings();
         
 
@@ -204,7 +206,8 @@ namespace DoctorDoctor
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Helper.RoundTripConform();
+            //Helper.RoundTripConform();
+            MessageBox.Show(Helper.GetFolderPath());
         }
 
         private void colorsToolStripMenuItem_Click(object sender, EventArgs e)

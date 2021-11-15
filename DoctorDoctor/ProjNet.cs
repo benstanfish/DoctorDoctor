@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using System.ComponentModel;
+using System.Diagnostics;
 
 namespace DoctorDoctor
 {
@@ -92,23 +93,30 @@ namespace DoctorDoctor
 
         public static bool Validate(string filePath)
         {
-            bool test = false;
-            ProjNet projNet = null;
             try
             {
                 var xml = new XmlSerializer(typeof(ProjNet));
                 using (var reader = new StreamReader(filePath))
                 {
-                    projNet = (ProjNet)xml.Deserialize(reader);
-                    if(projNet != null)
-                        test = true;
+                    ProjNet projNet = (ProjNet)xml.Deserialize(reader);
+                    if (projNet != null)
+                    {
+                        Debug.WriteLine("Point A");
+                        return true;
+                    }
+                    else
+                    {
+                        Debug.WriteLine("Point B");
+                        return false;
+                    }
+                     
                 }
             }
             catch (Exception)
             {
-                test = false;
+                Debug.WriteLine("Point C");
+                return false;
             }
-            return test;
         }
 
 

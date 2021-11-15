@@ -11,7 +11,44 @@ namespace DoctorDoctor
 {
     public static class Helper
     {
-       
+
+        /// <summary>
+        /// Returns the path of a selected folder
+        /// </summary>
+        /// <returns></returns>
+        public static string GetFolderPath()
+        {
+            var folderPath = string.Empty;
+            using (FolderBrowserDialog fbd = new FolderBrowserDialog())
+            {
+                string usersDesktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                //fd.InitialDirectory = usersDesktop + "\\Project Serialize\\";
+                
+
+                if (fbd.ShowDialog() == DialogResult.OK)
+                {
+                    folderPath = fbd.SelectedPath;
+                }
+            }
+            return folderPath;
+        }
+
+        public static List<string> ValidProjNetFiles(string folderPath)
+        {
+            string[] allFiles = Directory.GetFiles(folderPath);
+            List<string> validFiles = new List<string>();
+            foreach(string file in allFiles)
+            {
+                if (ProjNet.Validate(file))
+                {
+                    validFiles.Add(file);
+                }
+            }
+
+            return validFiles;
+        }
+
+
         /// <summary>
         /// Uses an OpenFileDialog to get a file path selected by the user.
         /// </summary>

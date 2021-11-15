@@ -17,10 +17,15 @@ namespace DoctorDoctor
         {
             InitializeComponent();
 
-            string testPath = Helper.GetFilePath();
-            bool validate = ProjNet.Validate(testPath);
-            Debug.WriteLine(validate);
-
+            string testPath = Helper.GetFolderPath();
+            //bool validate = ProjNet.Validate(testPath);
+            //Debug.WriteLine(validate);
+            List<string> validPaths = Helper.ValidProjNetFiles(testPath);
+            foreach (string validPath in validPaths)
+            {
+                Debug.WriteLine(validPath);
+            }
+                
         }
     }
 }

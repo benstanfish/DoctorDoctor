@@ -9,8 +9,9 @@ namespace DoctorDoctor
 
         //C:\Users\benst\Desktop\_XML Tests\projnet.xml
         
-        public ProjNet pn = ProjNet.ReadFromFile(@"C:\Users\benst\Desktop\_XML Tests\DrCkXMLReport_520_Concept_G.xml");
-        public ColorSettings cs = new ColorSettings();
+        public ProjNet pn = ProjNet.ReadFromFile(@"C:\Users\benst\Desktop\_XML Tests\projnet.xml");
+        public ColorSettings cs = ColorSettings.GetColorSettings();
+        
         
 
 
@@ -48,10 +49,10 @@ namespace DoctorDoctor
                 switch (cmt.Status.ToLower())
                 {
                     case "closed":
-                        node.ForeColor = cs.closedComment;
+                        node.ForeColor = cs.ClosedColor;
                         break;
                     default:
-                        node.ForeColor = cs.openComment;
+                        node.ForeColor = cs.OpenColor;
                         break;
                 }
 
@@ -64,16 +65,16 @@ namespace DoctorDoctor
                     switch (evaluation.Status.ToLower())
                     {
                         case "concur":
-                            temp = cs.concur;
+                            temp = cs.ConcurColor;
                             break;
                         case "for information only":
-                            temp = cs.forInformationOnly;
+                            temp = cs.ForInformationOnlyColor;
                             break;
                         case "non-concur":
-                            temp = cs.nonConcur;
+                            temp = cs.NonConcurColor;
                             break;
                         default:
-                            temp = cs.checkAndResolve;
+                            temp = cs.CheckAndResolveColor;
                             break;
                     }
                     treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes[treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes.IndexOf(node)].Nodes[evaluation.Id.ToString()].BackColor = temp;
@@ -87,16 +88,16 @@ namespace DoctorDoctor
                     switch (backcheck.Status.ToLower())
                     {
                         case "concur":
-                            temp = cs.concur;
+                            temp = cs.ConcurColor;
                             break;
                         case "for information only":
-                            temp = cs.forInformationOnly;
+                            temp = cs.ForInformationOnlyColor;
                             break;
                         case "non-concur":
-                            temp = cs.nonConcur;
+                            temp = cs.NonConcurColor;
                             break;
                         default:
-                            temp = cs.checkAndResolve;
+                            temp = cs.CheckAndResolveColor;
                             break;
                     }
                     treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes[treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes.IndexOf(node)].Nodes[backcheck.Id.ToString()].BackColor = temp;
@@ -201,6 +202,7 @@ namespace DoctorDoctor
 
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
+            
             e.Node.Expand();
         }
 

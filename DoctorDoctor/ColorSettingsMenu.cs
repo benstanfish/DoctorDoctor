@@ -23,7 +23,7 @@ namespace DoctorDoctor
         {
             if(colorDialog1.ShowDialog () == DialogResult.OK)
             {
-                cs.openComment =colorDialog1.Color;
+                cs.OpenColor =colorDialog1.Color;
             }
         }
 
@@ -31,7 +31,7 @@ namespace DoctorDoctor
         {
             if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
-                cs.closedComment = colorDialog1.Color;
+                cs.ClosedColor = colorDialog1.Color;
             }
         }
     }

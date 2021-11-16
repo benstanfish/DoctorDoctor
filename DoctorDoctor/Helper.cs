@@ -195,7 +195,7 @@ namespace DoctorDoctor
             return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         }
 
-        public static void CreateProjectFolder()
+        public static void CreateAppFolder()
         {
             string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\DoctorDoctor\";
             Directory.CreateDirectory(folderPath);

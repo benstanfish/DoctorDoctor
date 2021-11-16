@@ -9,8 +9,10 @@ namespace DoctorDoctor
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-
-            Helper.CreateProjectFolder();
+            //ColorSettings cs = new ColorSettings();
+            //cs.SaveColorSettings();
+            
+            //Helper.CreateAppFolder();
             Application.Run(new DoctorForm());
             
         }

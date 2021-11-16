@@ -8,8 +8,9 @@ namespace DoctorDoctor
     {
 
         //C:\Users\benst\Desktop\_XML Tests\projnet.xml
-        
-        public ProjNet pn = ProjNet.ReadFromFile(@"C:\Users\benst\Desktop\_XML Tests\projnet.xml");
+
+        //public ProjNet pn = ProjNet.ReadFromFile(@"C:\Users\benst\Desktop\_XML Tests\projnet.xml");
+        public ProjNet pn = new ProjNet();
         public ColorSettings cs = ColorSettings.GetColorSettings();
         
 
@@ -27,17 +28,26 @@ namespace DoctorDoctor
             //Comment cmt = Comment.ReadFromFile(CommentPath);
             //ProjNet projNet = ProjNet.ReadFromFile(ProjNetPath);
 
-            propertyGrid1.SelectedObject = pn.DoctorChecks;
+
+            
+
+
+
+        }
+
+        private void InjectTreeView()
+        {
+            
 
             treeView1.Nodes.Clear();
             List<string> Disciplines = pn.GetDisciplines();
-            foreach(string str in Disciplines)
+            foreach (string str in Disciplines)
             {
                 //Load treeview with Disciplines as root nodes
                 treeView1.Nodes.Add(str, str);      //HACK: It's important to load these nodes with the Discipline name as the Key and the Text!
             }
 
-            foreach(Comment cmt in pn.Comments)
+            foreach (Comment cmt in pn.Comments)
             {
                 //Load treeview with comments as children to discipline nodes
                 TreeNode node = new TreeNode(cmt.Id.ToString());
@@ -101,9 +111,6 @@ namespace DoctorDoctor
                     treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes[treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes.IndexOf(node)].Nodes[backcheck.Id.ToString()].ForeColor = temp;
                 }
             }
-
-
-
         }
 
         private void buttonClose_Click(object sender, EventArgs e)
@@ -207,7 +214,15 @@ namespace DoctorDoctor
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //Helper.RoundTripConform();
-            MessageBox.Show(Helper.GetFolderPath());
+            string path = Helper.GetFilePath();
+            if (ProjNet.Validate(path))
+            {
+                Helper.RoundTripConform(path);
+                pn = ProjNet.ReadFromFile(path);
+                propertyGrid1.SelectedObject = pn.DoctorChecks;
+                InjectTreeView();
+            }
+            //MessageBox.Show(Helper.GetFolderPath());
         }
 
         private void colorsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -222,6 +237,12 @@ namespace DoctorDoctor
         private void listBoxProjects_DragDrop(object sender, DragEventArgs e)
         {
            
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutForm aboutForm = new AboutForm(); 
+            aboutForm.Show();   
         }
     }
 }

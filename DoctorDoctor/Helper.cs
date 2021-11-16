@@ -173,10 +173,10 @@ namespace DoctorDoctor
         /// <summary>
         /// Roundtrip conforming XML file.
         /// </summary>
-        public static void RoundTripConform()
+        public static void RoundTripConform(string filePath)
         {
             //TODO: Delete debugs
-            string filePath = GetFilePath();
+            //string filePath = GetFilePath();
             //Debug.WriteLine("File consumed");
             string[] lines = ConsumeFile(filePath);
             lines = XMLConformer(lines, "evaluation");

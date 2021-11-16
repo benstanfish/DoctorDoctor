@@ -39,6 +39,7 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -51,7 +52,7 @@
             // buttonClose
             // 
             this.buttonClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonClose.Location = new System.Drawing.Point(1139, 646);
+            this.buttonClose.Location = new System.Drawing.Point(1139, 679);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(94, 29);
             this.buttonClose.TabIndex = 0;
@@ -115,6 +116,7 @@
             // 
             // textBoxComments
             // 
+            this.textBoxComments.BackColor = System.Drawing.Color.LemonChiffon;
             this.textBoxComments.Location = new System.Drawing.Point(295, 521);
             this.textBoxComments.Multiline = true;
             this.textBoxComments.Name = "textBoxComments";
@@ -125,7 +127,8 @@
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1245, 28);
@@ -144,16 +147,23 @@
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(125, 26);
             this.settingsToolStripMenuItem.Text = "Load";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(125, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // label1
             // 
@@ -194,6 +204,7 @@
             // listBoxProjects
             // 
             this.listBoxProjects.AllowDrop = true;
+            this.listBoxProjects.Enabled = false;
             this.listBoxProjects.FormattingEnabled = true;
             this.listBoxProjects.ItemHeight = 20;
             this.listBoxProjects.Location = new System.Drawing.Point(12, 57);
@@ -205,6 +216,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.Enabled = false;
             this.label5.Location = new System.Drawing.Point(12, 34);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(61, 20);
@@ -263,5 +275,6 @@
         private Label label4;
         private ListBox listBoxProjects;
         private Label label5;
+        private ToolStripMenuItem aboutToolStripMenuItem;
     }
 }

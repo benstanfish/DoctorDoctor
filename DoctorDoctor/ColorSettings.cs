@@ -13,17 +13,17 @@ namespace DoctorDoctor
     {
 
         [XmlIgnore]
-        public Color OpenColor { get; set; }
+        public Color OpenColor { get; set; } = Color.Black;
         [XmlIgnore]
-        public Color ClosedColor { get; set; }
+        public Color ClosedColor { get; set; } = Color.Gray;
         [XmlIgnore]
-        public Color ConcurColor { get; set; }
+        public Color ConcurColor { get; set; } = Color.Blue;
         [XmlIgnore]
-        public Color ForInformationOnlyColor { get; set; }
+        public Color ForInformationOnlyColor { get; set; } = Color.Green;
         [XmlIgnore]
-        public Color NonConcurColor { get; set; }
+        public Color NonConcurColor { get; set; } = Color.Orange;
         [XmlIgnore]
-        public Color CheckAndResolveColor { get; set; }
+        public Color CheckAndResolveColor { get; set; } = Color.Red;
 
         [Category("Description")]
         [XmlElement("Description")]

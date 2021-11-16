@@ -12,8 +12,6 @@ namespace DoctorDoctor
         public ProjNet pn = ProjNet.ReadFromFile(@"C:\Users\benst\Desktop\_XML Tests\projnet.xml");
         public ColorSettings cs = ColorSettings.GetColorSettings();
         
-        
-
 
         public DoctorForm()
         {
@@ -77,7 +75,7 @@ namespace DoctorDoctor
                             temp = cs.CheckAndResolveColor;
                             break;
                     }
-                    treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes[treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes.IndexOf(node)].Nodes[evaluation.Id.ToString()].BackColor = temp;
+                    treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes[treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes.IndexOf(node)].Nodes[evaluation.Id.ToString()].ForeColor = temp;
                 }
                 foreach (Backcheck backcheck in cmt.Backchecks)
                 {
@@ -100,7 +98,7 @@ namespace DoctorDoctor
                             temp = cs.CheckAndResolveColor;
                             break;
                     }
-                    treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes[treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes.IndexOf(node)].Nodes[backcheck.Id.ToString()].BackColor = temp;
+                    treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes[treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes.IndexOf(node)].Nodes[backcheck.Id.ToString()].ForeColor = temp;
                 }
             }
 

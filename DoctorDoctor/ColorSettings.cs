@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ namespace DoctorDoctor
     [XmlRoot]
     public class ColorSettings
     {
+
         [XmlIgnore]
         public Color OpenColor { get; set; }
         [XmlIgnore]
@@ -21,49 +23,63 @@ namespace DoctorDoctor
         [XmlIgnore]
         public Color NonConcurColor { get; set; }
         [XmlIgnore]
-        public Color CheckAndResolveColor { get; set;}
-        [XmlElement]
-        public string ColorNameInstructions { get; set; }
-        [XmlElement]
-        public string OpenComments { get; set; }
-        [XmlElement]
-        public string ClosedComments { get; set; }
-        [XmlElement]
-        public string ConcurComments { get; set; }
-        [XmlElement]
-        public string NonConcurComments { get; set; } 
-        [XmlElement]
-        public string ForInformationOnlyComments { get; set; }
-        [XmlElement]
-        public string CheckAndResolveComments { get; set; }
+        public Color CheckAndResolveColor { get; set; }
+
+        [Category("Description")]
+        [XmlElement("Description")]
+        public string ColorNameInstructions { get; set; } = @"Color names can be found at https://docs.microsoft.com/en-us/dotnet/api/system.drawing.color?view=net-5.0. These are standard 'Web Colors' and can be observed at https://developer.mozilla.org/en-US/docs/Web/CSS/color_value. When entering names in the XML file manually, make sure there are no spaces and ProperCase is used as per the MSFT link above.";
+        [XmlElement("Open")]
+        public string Open
+        {
+            get { return this.OpenColor.ToString(); }
+            set { this.OpenColor = Color.FromName(value); } 
+        }
+        [XmlElement("Closed")]
+        public string Closed
+        {
+            get { return this.ClosedColor.ToString(); }
+            set { this.ClosedColor = Color.FromName(value); }
+        }
+        [XmlElement("Concur")]
+        public string Concur
+        {
+            get { return this.ConcurColor.ToString(); }
+            set { this.ConcurColor = Color.FromName(value); }
+        }
+        [XmlElement("Nonconcur")]
+        public string NonConcur
+        {
+            get { return this.NonConcurColor.ToString(); }
+            set { this.NonConcurColor = Color.FromName(value); }
+        }
+        [XmlElement("ForInformationOnly")]
+        public string Information
+        {
+            get { return this.ForInformationOnlyColor.ToString(); }
+            set { this.ForInformationOnlyColor = Color.FromName(value); }
+        }
+        [XmlElement("CheckAndResolve")]
+        public string Check
+        {
+            get { return this.CheckAndResolveColor.ToString(); }
+            set { this.CheckAndResolveColor = Color.FromName(value); }
+        }
 
 
         public ColorSettings()
         {
-            ColorNameInstructions = @"Color names can be found at https://docs.microsoft.com/en-us/dotnet/api/system.drawing.color?view=net-5.0. These are standard 'Web Colors' and can be observed at https://developer.mozilla.org/en-US/docs/Web/CSS/color_value. When entering names in the XML file manually, make sure there are no spaces and ProperCase is used as per the MSFT link above.";
-            OpenColor = Color.FromName(OpenComments);
-            ClosedColor = Color.FromName(ClosedComments);
-            ConcurColor = Color.FromName(ConcurComments);
-            ForInformationOnlyColor = Color.FromName(ForInformationOnlyComments);
-            NonConcurColor = Color.FromName(NonConcurComments);
-            CheckAndResolveColor = Color.FromName(CheckAndResolveComments);
         }
 
-        public ColorSettings(string openComments, string closedComments, string concurComments, string nonConcurComments,
-            string forInformationOnlyComments, string checkAndResolveComments)
+        public ColorSettings(string open, string closed, 
+            string concur, string nonConcur, string information, 
+            string check)
         {
-            OpenComments = openComments;
-            ClosedComments = closedComments;
-            ConcurComments = concurComments;
-            NonConcurComments = nonConcurComments;
-            ForInformationOnlyComments = forInformationOnlyComments;
-            CheckAndResolveComments = checkAndResolveComments;
-            OpenColor = Color.FromName(OpenComments);
-            ClosedColor = Color.FromName(ClosedComments);
-            ConcurColor = Color.FromName(ConcurComments);
-            ForInformationOnlyColor = Color.FromName(ForInformationOnlyComments);
-            NonConcurColor = Color.FromName(NonConcurComments);
-            CheckAndResolveColor = Color.FromName(CheckAndResolveComments);
+            Open = open;
+            Closed = closed;
+            Concur = concur;
+            NonConcur = nonConcur;
+            Information = information;
+            Check = check;
         }
 
         public void SaveColorSettings()
@@ -79,11 +95,16 @@ namespace DoctorDoctor
         public static ColorSettings GetColorSettings()
         {
             string configPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\DoctorDoctor\colorconfig.xml";
+            ColorSettings cs = new ColorSettings();
             if (File.Exists(configPath))
             {
-                return ColorSettings.ReadFromFile(configPath);
+                cs.ReadFromFile(configPath);
             }
-            return new ColorSettings();
+            else
+            {
+                cs.WriteToFile(configPath);
+            }
+            return cs;
         }
 
         public void WriteToFile(string filePath)
@@ -96,7 +117,7 @@ namespace DoctorDoctor
             writer.Close();
         }
 
-        public static ColorSettings ReadFromFile(string filePath)
+        public ColorSettings ReadFromFile(string filePath)
         {
             var xml = new XmlSerializer(typeof(ColorSettings));
             using (var reader = new StreamReader(filePath))

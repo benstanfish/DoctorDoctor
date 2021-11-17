@@ -216,11 +216,17 @@ namespace DoctorDoctor
             //bool validate = ProjNet.Validate(testPath);
             //Debug.WriteLine("Validation: " + validate.ToString());
             List<string> validPaths = Helper.ValidProjNetFiles(testPath);
+            List<ProjNet> loadPNs = new List<ProjNet>();
+            foreach(string st in validPaths)
+            {
+                loadPNs.Add(ProjNet.ReadFromFile(st));
+            }
             //foreach (string validPath in validPaths)
             //{
             //    MessageBox.Show(validPath);
             //}
-            listBoxProjects.DataSource = validPaths;
+            pnList = loadPNs;
+            listBoxProjects.DataSource = pnList;
         }
 
         private void colorsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -253,7 +259,11 @@ namespace DoctorDoctor
                     if (ProjNet.Validate(path))
                     {
                         Helper.RoundTripConform(path);
-                        pnList.Add(ProjNet.ReadFromFile(path));
+                        ProjNet newPN = ProjNet.ReadFromFile(path);
+                        //newPN.FilePath = path;
+                        //newPN.FileName = Path.GetFileNameWithoutExtension(path);
+
+                        pnList.Add(newPN);
 
                         // pn = ProjNet.ReadFromFile(path);
                         //propertyGrid1.SelectedObject = pn.DoctorChecks;
@@ -264,6 +274,12 @@ namespace DoctorDoctor
             }
                 
             
+        }
+
+        private void listBoxProjects_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            pn = pnList[listBoxProjects.SelectedIndex];
+            InjectTreeView();
         }
     }
 }

@@ -17,7 +17,10 @@ namespace DoctorDoctor
 
         [XmlIgnore]
         [Category("FilePath")]
-        public static string ThisPath {get; set;}
+        public static string FilePath {get; set;}
+        [XmlIgnore]
+        [Category("FilePath")]
+        public static string FileName { get; set;}  
 
         [XmlArray("Comments")]
         [XmlArrayItem("comment")]
@@ -56,7 +59,6 @@ namespace DoctorDoctor
                 var xml = new XmlSerializer(typeof(ProjNet));
                 using (var reader = new StreamReader(filePath))
                 {
-                    ThisPath = filePath;
                     return (ProjNet)xml.Deserialize(reader);
                 }
             }
@@ -70,8 +72,17 @@ namespace DoctorDoctor
 
         public override string ToString()
         {
-            string docChecks = $"----- ProjNet Object -----\n" + this.DoctorChecks.ToString();
-            return docChecks + "\nComment Count: " + CommentCount() + "\n";
+            //if(this.FileName != string.Empty)
+            //{
+            //    return this.FileName;
+            //}
+            //else
+            //{
+            //    return DoctorChecks.ReviewName;
+            //}
+            return DoctorChecks.ReviewName;
+            //string docChecks = $"----- ProjNet Object -----\n" + this.DoctorChecks.ToString();
+            //return docChecks + "\nComment Count: " + CommentCount() + "\n";
         }
 
 
@@ -101,12 +112,10 @@ namespace DoctorDoctor
                     ProjNet projNet = (ProjNet)xml.Deserialize(reader);
                     if (projNet != null)
                     {
-                        Debug.WriteLine("Point A");
                         return true;
                     }
                     else
                     {
-                        Debug.WriteLine("Point B");
                         return false;
                     }
                 }
@@ -117,12 +126,6 @@ namespace DoctorDoctor
                 return false;
                 
             }
-        }
-
-
-        public string GetPath()
-        {
-            return ThisPath;
         }
 
 

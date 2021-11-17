@@ -22,7 +22,7 @@ namespace DoctorDoctor
             label2.Text = "Upcoming Development";
             textBoxFuture.Text = "- Color Selection Menus \r\n- Filter tree node list \r\n- Print to report \r\n- Data Grid View";
             label3.Text = "Known Issues";
-            textBoxIssues.Text = "- Working on persistence of colors and project folders.\r\n- Working on XML file sanitization process.\r\n- Expanded project selection ability.\r\n- Persistence of recent project file on load.";
+            textBoxIssues.Text = "- Working on persistence of colors and project folders.\r\n- Persistence of recent project file on load.";
         }
 
         private void button1_Click(object sender, EventArgs e)

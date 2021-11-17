@@ -7,9 +7,7 @@ namespace DoctorDoctor
     public partial class DoctorForm : Form
     {
 
-        //C:\Users\benst\Desktop\_XML Tests\projnet.xml
-
-        //public ProjNet pn = ProjNet.ReadFromFile(@"C:\Users\benst\Desktop\_XML Tests\projnet.xml");
+        
         public ProjNet pn = new ProjNet();
         public List<ProjNet> pnList = new List<ProjNet>();
         public ColorSettings cs = ColorSettings.GetColorSettings();
@@ -17,7 +15,9 @@ namespace DoctorDoctor
 
         public DoctorForm()
         {
+            
             InitializeComponent();
+            colorCodingToolStripMenuItem.Enabled = false;
         }
 
 
@@ -25,6 +25,7 @@ namespace DoctorDoctor
 
         private void InjectTreeView()
         {
+            
             treeView1.Nodes.Clear();
             List<string> Disciplines = pn.GetDisciplines();
             foreach (string str in Disciplines)
@@ -161,25 +162,10 @@ namespace DoctorDoctor
             }
         }
 
-        public static void LoadProject()
-        {   
-
-            try
-            {
-                string path = Helper.GetFilePath();
-                
-            }
-            catch (Exception)
-            {
-                
-                
-            }
-            
-        }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            //TODO: Create expand all at certain level
+            
             treeView1.ExpandAll();
         }
 
@@ -213,6 +199,7 @@ namespace DoctorDoctor
             {
                 loadPNs.Add(ProjNet.ReadFromFile(st));
             }
+            colorCodingToolStripMenuItem.Enabled = true;
             pnList = loadPNs;
             listBoxProjects.DataSource = pnList;
             listBoxProjects.Refresh();
@@ -257,6 +244,7 @@ namespace DoctorDoctor
                 pn = newPN;
                 pnList.Clear();
                 pnList.Add(newPN);
+      
                 propertyGrid1.SelectedObject = pn.DoctorChecks;
                 listBoxProjects.DataSource = new List<ProjNet> { pn };
 
@@ -264,6 +252,7 @@ namespace DoctorDoctor
                
                 
             }
+            colorCodingToolStripMenuItem.Enabled = true;
             listBoxProjects.Refresh();
         }
 

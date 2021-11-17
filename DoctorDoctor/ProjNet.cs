@@ -16,6 +16,9 @@ namespace DoctorDoctor
         public DrChecks DoctorChecks { get; set; }
 
         [XmlIgnore]
+        public bool isBlank { get; set; } = true;
+
+        [XmlIgnore]
         [Category("FilePath")]
         public static string FilePath {get; set;}
         [XmlIgnore]

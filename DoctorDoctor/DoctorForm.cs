@@ -269,7 +269,11 @@ namespace DoctorDoctor
             csm.Repaint();
             csm.Show();
             cs = csm.ColorSettingProperties;
-            
+
+            pn = pnList[listBoxProjects.SelectedIndex];
+            propertyGrid1.SelectedObject = pn.DoctorChecks;
+            InjectTreeView();
+
         }
     }
 }

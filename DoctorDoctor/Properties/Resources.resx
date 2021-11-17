@@ -127,6 +127,15 @@
   <data name="favicon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\favicon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="step1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\step1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="step2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\step2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="step3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\step3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="TitleImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TitleImage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

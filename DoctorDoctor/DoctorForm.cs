@@ -13,7 +13,7 @@ namespace DoctorDoctor
         public ProjNet pn = new ProjNet();
         public List<ProjNet> pnList = new List<ProjNet>();
         public ColorSettings cs = ColorSettings.GetColorSettings();
-        public string projectFolder = string.Empty;
+        public string path = string.Empty;
 
         public DoctorForm()
         {
@@ -108,6 +108,8 @@ namespace DoctorDoctor
         {
             if(treeView1.SelectedNode != null)
             {
+                propertyGrid1.SelectedObject = pn.DoctorChecks;
+
                 int level = treeView1.SelectedNode.Level;
                 string[] fullAddy = treeView1.SelectedNode.FullPath.Split(@"\");
 
@@ -204,29 +206,16 @@ namespace DoctorDoctor
             // are validated via ProjNet.Validate(), finally injecting the List<ProjNet>
             // to the listBoxProjects.
 
-            //Helper.RoundTripConform();
-            //string path = Helper.GetFilePath();
-
-
-
-            //MessageBox.Show(Helper.GetFolderPath());
-
             string testPath = Helper.GetFolderPath();
-            //Helper.RoundTripConform(testPath);
-            //bool validate = ProjNet.Validate(testPath);
-            //Debug.WriteLine("Validation: " + validate.ToString());
             List<string> validPaths = Helper.ValidProjNetFiles(testPath);
             List<ProjNet> loadPNs = new List<ProjNet>();
             foreach(string st in validPaths)
             {
                 loadPNs.Add(ProjNet.ReadFromFile(st));
             }
-            //foreach (string validPath in validPaths)
-            //{
-            //    MessageBox.Show(validPath);
-            //}
             pnList = loadPNs;
             listBoxProjects.DataSource = pnList;
+            listBoxProjects.Refresh();
         }
 
         private void colorsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -246,39 +235,37 @@ namespace DoctorDoctor
             aboutForm.Show();   
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            projectFolder = Helper.GetFolderPath();
-            if (projectFolder != null)
-            {
-                Debug.WriteLine(projectFolder);
-                pnList.Clear();
-                foreach (string path in Directory.GetFiles(projectFolder))
-                {
-                    Debug.WriteLine(path);
-                    if (ProjNet.Validate(path))
-                    {
-                        Helper.RoundTripConform(path);
-                        ProjNet newPN = ProjNet.ReadFromFile(path);
-                        //newPN.FilePath = path;
-                        //newPN.FileName = Path.GetFileNameWithoutExtension(path);
-
-                        pnList.Add(newPN);
-
-                        // pn = ProjNet.ReadFromFile(path);
-                        //propertyGrid1.SelectedObject = pn.DoctorChecks;
-                        //InjectTreeView();
-                    }
-                    listBoxProjects.DataSource = pnList;
-                }
-            }
+        //private void button1_Click(object sender, EventArgs e)
+        //{
+            
+        //    path = Helper.GetFolderPath();
+        //    if (path != null)
+        //    {
+        //        pnList.Clear();
+        //        foreach (string path in Directory.GetFiles(path))
+        //        {
+                    
+        //            if (ProjNet.Validate(path))
+        //            {
+        //                Helper.RoundTripConform(path);
+        //                ProjNet newPN = ProjNet.ReadFromFile(path);
+        //                pnList.Add(newPN);
+        //            }
+                    
+        //        }
+        //        pn = pnList[0];
+        //        propertyGrid1.SelectedObject = pn.DoctorChecks;
+        //        InjectTreeView();
+        //        listBoxProjects.Refresh();
+        //    }
                 
             
-        }
+        //}
 
         private void listBoxProjects_SelectedIndexChanged(object sender, EventArgs e)
         {
             pn = pnList[listBoxProjects.SelectedIndex];
+            propertyGrid1.SelectedObject = pn.DoctorChecks;
             InjectTreeView();
         }
 
@@ -286,6 +273,29 @@ namespace DoctorDoctor
         {
             InstructionsForm instructionsForm = new InstructionsForm();
             instructionsForm.Show();
+        }
+
+        private void loadFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {            
+            
+            path = Helper.GetFilePath();
+            if (path != null & ProjNet.Validate(path))
+            {
+                
+                Helper.RoundTripConform(path);
+                ProjNet newPN = ProjNet.ReadFromFile(path);
+
+                pn = newPN;
+                pnList.Clear();
+                pnList.Add(newPN);
+                propertyGrid1.SelectedObject = pn.DoctorChecks;
+                listBoxProjects.DataSource = new List<ProjNet> { pn };
+
+                InjectTreeView();
+               
+                
+            }
+            listBoxProjects.Refresh();
         }
     }
 }

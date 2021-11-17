@@ -95,6 +95,7 @@
             this.textBoxFuture.AcceptsReturn = true;
             this.textBoxFuture.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.textBoxFuture.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxFuture.Cursor = System.Windows.Forms.Cursors.No;
             this.textBoxFuture.ForeColor = System.Drawing.SystemColors.WindowText;
             this.textBoxFuture.Location = new System.Drawing.Point(17, 280);
             this.textBoxFuture.Multiline = true;
@@ -118,6 +119,7 @@
             this.textBoxIssues.AcceptsReturn = true;
             this.textBoxIssues.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.textBoxIssues.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxIssues.Cursor = System.Windows.Forms.Cursors.No;
             this.textBoxIssues.ForeColor = System.Drawing.SystemColors.WindowText;
             this.textBoxIssues.Location = new System.Drawing.Point(230, 280);
             this.textBoxIssues.Multiline = true;

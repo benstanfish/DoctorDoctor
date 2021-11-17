@@ -220,11 +220,10 @@ namespace DoctorDoctor
 
         private void colorsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ColorSettings newCs = new ColorSettings();
-            ColorSettingsMenu csm = new ColorSettingsMenu();
-            csm.cs = newCs;
+            ColorSettingsForm csm = new ColorSettingsForm();
+            csm.ColorSettingProperties = cs;
             csm.Show();
-            cs = newCs;
+            cs = csm.ColorSettingProperties;
         }
 
 
@@ -235,32 +234,7 @@ namespace DoctorDoctor
             aboutForm.Show();   
         }
 
-        //private void button1_Click(object sender, EventArgs e)
-        //{
-            
-        //    path = Helper.GetFolderPath();
-        //    if (path != null)
-        //    {
-        //        pnList.Clear();
-        //        foreach (string path in Directory.GetFiles(path))
-        //        {
-                    
-        //            if (ProjNet.Validate(path))
-        //            {
-        //                Helper.RoundTripConform(path);
-        //                ProjNet newPN = ProjNet.ReadFromFile(path);
-        //                pnList.Add(newPN);
-        //            }
-                    
-        //        }
-        //        pn = pnList[0];
-        //        propertyGrid1.SelectedObject = pn.DoctorChecks;
-        //        InjectTreeView();
-        //        listBoxProjects.Refresh();
-        //    }
-                
-            
-        //}
+
 
         private void listBoxProjects_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -269,11 +243,6 @@ namespace DoctorDoctor
             InjectTreeView();
         }
 
-        private void instructionsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            InstructionsForm instructionsForm = new InstructionsForm();
-            instructionsForm.Show();
-        }
 
         private void loadFileToolStripMenuItem_Click(object sender, EventArgs e)
         {            
@@ -296,6 +265,22 @@ namespace DoctorDoctor
                 
             }
             listBoxProjects.Refresh();
+        }
+
+        private void importFilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InstructionsForm instructionsForm = new InstructionsForm();
+            instructionsForm.Show();
+        }
+
+        private void colorCodingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ColorSettingsForm csm = new ColorSettingsForm();
+            csm.ColorSettingProperties = cs;
+            csm.Repaint();
+            csm.Show();
+            cs = csm.ColorSettingProperties;
+            
         }
     }
 }

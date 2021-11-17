@@ -49,6 +49,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.listBoxProjects = new System.Windows.Forms.ListBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.importFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.colorCodingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -152,30 +154,33 @@
             // loadFolderToolStripMenuItem
             // 
             this.loadFolderToolStripMenuItem.Name = "loadFolderToolStripMenuItem";
-            this.loadFolderToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.loadFolderToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
             this.loadFolderToolStripMenuItem.Text = "Load Folder";
             this.loadFolderToolStripMenuItem.Click += new System.EventHandler(this.loadProjectToolStripMenuItem_Click);
             // 
             // loadFileToolStripMenuItem
             // 
             this.loadFileToolStripMenuItem.Name = "loadFileToolStripMenuItem";
-            this.loadFileToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.loadFileToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
             this.loadFileToolStripMenuItem.Text = "Load File Only";
             this.loadFileToolStripMenuItem.Click += new System.EventHandler(this.loadFileToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // instructionsToolStripMenuItem
             // 
+            this.instructionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.importFilesToolStripMenuItem,
+            this.colorCodingToolStripMenuItem});
             this.instructionsToolStripMenuItem.Name = "instructionsToolStripMenuItem";
             this.instructionsToolStripMenuItem.Size = new System.Drawing.Size(98, 24);
             this.instructionsToolStripMenuItem.Text = "Instructions";
-            this.instructionsToolStripMenuItem.Click += new System.EventHandler(this.instructionsToolStripMenuItem_Click);
+
             // 
             // aboutToolStripMenuItem
             // 
@@ -240,6 +245,20 @@
             this.label5.TabIndex = 15;
             this.label5.Text = "Projects";
             // 
+            // importFilesToolStripMenuItem
+            // 
+            this.importFilesToolStripMenuItem.Name = "importFilesToolStripMenuItem";
+            this.importFilesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.importFilesToolStripMenuItem.Text = "Import Files";
+            this.importFilesToolStripMenuItem.Click += new System.EventHandler(this.importFilesToolStripMenuItem_Click);
+            // 
+            // colorCodingToolStripMenuItem
+            // 
+            this.colorCodingToolStripMenuItem.Name = "colorCodingToolStripMenuItem";
+            this.colorCodingToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.colorCodingToolStripMenuItem.Text = "Color Coding";
+            this.colorCodingToolStripMenuItem.Click += new System.EventHandler(this.colorCodingToolStripMenuItem_Click);
+            // 
             // DoctorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -295,5 +314,7 @@
         private ToolStripMenuItem aboutToolStripMenuItem;
         private ToolStripMenuItem instructionsToolStripMenuItem;
         private ToolStripMenuItem loadFileToolStripMenuItem;
+        private ToolStripMenuItem importFilesToolStripMenuItem;
+        private ToolStripMenuItem colorCodingToolStripMenuItem;
     }
 }

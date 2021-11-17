@@ -281,5 +281,11 @@ namespace DoctorDoctor
             pn = pnList[listBoxProjects.SelectedIndex];
             InjectTreeView();
         }
+
+        private void instructionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InstructionsForm instructionsForm = new InstructionsForm();
+            instructionsForm.Show();
+        }
     }
 }

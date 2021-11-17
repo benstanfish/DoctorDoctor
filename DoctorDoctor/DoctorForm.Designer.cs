@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DoctorForm));
             this.buttonClose = new System.Windows.Forms.Button();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.treeView1 = new System.Windows.Forms.TreeView();
@@ -46,7 +47,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.listBoxProjects = new System.Windows.Forms.ListBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.instructionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,7 +98,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(12, 679);
+            this.button3.Location = new System.Drawing.Point(12, 681);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(101, 29);
             this.button3.TabIndex = 6;
@@ -107,7 +108,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(188, 679);
+            this.button4.Location = new System.Drawing.Point(119, 681);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(101, 29);
             this.button4.TabIndex = 7;
@@ -129,6 +130,7 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
+            this.instructionsToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -222,15 +224,12 @@
             this.label5.TabIndex = 15;
             this.label5.Text = "Projects";
             // 
-            // button1
+            // instructionsToolStripMenuItem
             // 
-            this.button1.Location = new System.Drawing.Point(438, 679);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 29);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.instructionsToolStripMenuItem.Name = "instructionsToolStripMenuItem";
+            this.instructionsToolStripMenuItem.Size = new System.Drawing.Size(98, 24);
+            this.instructionsToolStripMenuItem.Text = "Instructions";
+            this.instructionsToolStripMenuItem.Click += new System.EventHandler(this.instructionsToolStripMenuItem_Click);
             // 
             // DoctorForm
             // 
@@ -238,7 +237,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1245, 722);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.listBoxProjects);
             this.Controls.Add(this.label4);
@@ -254,11 +252,11 @@
             this.Controls.Add(this.buttonClose);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "DoctorForm";
-            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Dr. Checks Doctor";
+            this.Text = "DoctorDoctor";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -286,6 +284,6 @@
         private ListBox listBoxProjects;
         private Label label5;
         private ToolStripMenuItem aboutToolStripMenuItem;
-        private Button button1;
+        private ToolStripMenuItem instructionsToolStripMenuItem;
     }
 }

@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace DoctorDoctor
 {
     internal static class Program
@@ -11,10 +13,12 @@ namespace DoctorDoctor
             ApplicationConfiguration.Initialize();
             //ColorSettings cs = new ColorSettings();
             //cs.SaveColorSettings();
-            
+
             //Helper.CreateAppFolder();
+
             Application.Run(new DoctorForm());
             
+
         }
     }
 

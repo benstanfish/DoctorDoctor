@@ -11,34 +11,20 @@ namespace DoctorDoctor
 
         //public ProjNet pn = ProjNet.ReadFromFile(@"C:\Users\benst\Desktop\_XML Tests\projnet.xml");
         public ProjNet pn = new ProjNet();
+        public List<ProjNet> pnList = new List<ProjNet>();
         public ColorSettings cs = ColorSettings.GetColorSettings();
-        
+        public string projectFolder = string.Empty;
 
         public DoctorForm()
         {
             InitializeComponent();
-
-            //string EvaluationPath = @"C:\Users\benst\Desktop\_XML Tests\evaluation.xml";
-            //string BackcheckPath = @"C:\Users\benst\Desktop\_XML Tests\backcheck.xml";
-            //string CommentPath = @"C:\Users\benst\Desktop\_XML Tests\comment.xml";
-            //string ProjNetPath = @"C:\Users\benst\Desktop\_XML Tests\projnet.xml";
-
-            //Evaluation eval = Evaluation.ReadFromFile(EvaluationPath);
-            //Backcheck bc = Backcheck.ReadFromFile(BackcheckPath);
-            //Comment cmt = Comment.ReadFromFile(CommentPath);
-            //ProjNet projNet = ProjNet.ReadFromFile(ProjNetPath);
-
-
-            
-
-
-
         }
+
+
+
 
         private void InjectTreeView()
         {
-            
-
             treeView1.Nodes.Clear();
             List<string> Disciplines = pn.GetDisciplines();
             foreach (string str in Disciplines)
@@ -211,18 +197,30 @@ namespace DoctorDoctor
             e.Node.Expand();
         }
 
-        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void loadProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // This function gets a project folder and sets the projectFolder string,
+            // then it cycles through the XML files in that folder, conforming ones that
+            // are validated via ProjNet.Validate(), finally injecting the List<ProjNet>
+            // to the listBoxProjects.
+
             //Helper.RoundTripConform();
-            string path = Helper.GetFilePath();
-            if (ProjNet.Validate(path))
-            {
-                Helper.RoundTripConform(path);
-                pn = ProjNet.ReadFromFile(path);
-                propertyGrid1.SelectedObject = pn.DoctorChecks;
-                InjectTreeView();
-            }
+            //string path = Helper.GetFilePath();
+
+
+
             //MessageBox.Show(Helper.GetFolderPath());
+
+            string testPath = Helper.GetFolderPath();
+            //Helper.RoundTripConform(testPath);
+            //bool validate = ProjNet.Validate(testPath);
+            //Debug.WriteLine("Validation: " + validate.ToString());
+            List<string> validPaths = Helper.ValidProjNetFiles(testPath);
+            //foreach (string validPath in validPaths)
+            //{
+            //    MessageBox.Show(validPath);
+            //}
+            listBoxProjects.DataSource = validPaths;
         }
 
         private void colorsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -234,15 +232,38 @@ namespace DoctorDoctor
             cs = newCs;
         }
 
-        private void listBoxProjects_DragDrop(object sender, DragEventArgs e)
-        {
-           
-        }
+
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AboutForm aboutForm = new AboutForm(); 
             aboutForm.Show();   
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            projectFolder = Helper.GetFolderPath();
+            if (projectFolder != null)
+            {
+                Debug.WriteLine(projectFolder);
+                pnList.Clear();
+                foreach (string path in Directory.GetFiles(projectFolder))
+                {
+                    Debug.WriteLine(path);
+                    if (ProjNet.Validate(path))
+                    {
+                        Helper.RoundTripConform(path);
+                        pnList.Add(ProjNet.ReadFromFile(path));
+
+                        // pn = ProjNet.ReadFromFile(path);
+                        //propertyGrid1.SelectedObject = pn.DoctorChecks;
+                        //InjectTreeView();
+                    }
+                    listBoxProjects.DataSource = pnList;
+                }
+            }
+                
+            
         }
     }
 }

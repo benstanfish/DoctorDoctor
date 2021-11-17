@@ -46,6 +46,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.listBoxProjects = new System.Windows.Forms.ListBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -147,14 +148,14 @@
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(125, 26);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.settingsToolStripMenuItem.Text = "Load";
-            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
+            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.loadProjectToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(125, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -204,24 +205,31 @@
             // listBoxProjects
             // 
             this.listBoxProjects.AllowDrop = true;
-            this.listBoxProjects.Enabled = false;
             this.listBoxProjects.FormattingEnabled = true;
             this.listBoxProjects.ItemHeight = 20;
             this.listBoxProjects.Location = new System.Drawing.Point(12, 57);
             this.listBoxProjects.Name = "listBoxProjects";
             this.listBoxProjects.Size = new System.Drawing.Size(277, 124);
             this.listBoxProjects.TabIndex = 14;
-            this.listBoxProjects.DragDrop += new System.Windows.Forms.DragEventHandler(this.listBoxProjects_DragDrop);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Enabled = false;
             this.label5.Location = new System.Drawing.Point(12, 34);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(61, 20);
             this.label5.TabIndex = 15;
             this.label5.Text = "Projects";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(438, 679);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(94, 29);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // DoctorForm
             // 
@@ -229,6 +237,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1245, 722);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.listBoxProjects);
             this.Controls.Add(this.label4);
@@ -276,5 +285,6 @@
         private ListBox listBoxProjects;
         private Label label5;
         private ToolStripMenuItem aboutToolStripMenuItem;
+        private Button button1;
     }
 }

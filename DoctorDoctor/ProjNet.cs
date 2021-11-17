@@ -95,9 +95,9 @@ namespace DoctorDoctor
         {
             try
             {
-                var xml = new XmlSerializer(typeof(ProjNet));
                 using (var reader = new StreamReader(filePath))
                 {
+                    var xml = new XmlSerializer(typeof(ProjNet));
                     ProjNet projNet = (ProjNet)xml.Deserialize(reader);
                     if (projNet != null)
                     {
@@ -109,13 +109,13 @@ namespace DoctorDoctor
                         Debug.WriteLine("Point B");
                         return false;
                     }
-                     
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                Debug.WriteLine("Point C");
+                Debug.WriteLine(e.InnerException.ToString());
                 return false;
+                
             }
         }
 

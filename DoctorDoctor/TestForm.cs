@@ -17,15 +17,19 @@ namespace DoctorDoctor
         {
             InitializeComponent();
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
             string testPath = Helper.GetFolderPath();
+            //Helper.RoundTripConform(testPath);
             //bool validate = ProjNet.Validate(testPath);
-            //Debug.WriteLine(validate);
+            //Debug.WriteLine("Validation: " + validate.ToString());
             List<string> validPaths = Helper.ValidProjNetFiles(testPath);
             foreach (string validPath in validPaths)
             {
-                Debug.WriteLine(validPath);
+                MessageBox.Show(validPath);
             }
-                
         }
     }
 }

@@ -17,7 +17,7 @@ namespace DoctorDoctor
         {
 
             InitializeComponent();
-            label1.Text = "Version 1.1.1";
+            label1.Text = "Version 1.1.2";
             textBoxAbout.Text = "Created by Ben Fisher, November 2021\r\n\r\nThis app was created as a read-only viewer that will rapidly digest Dr. Checks (ProjNet) XML reports and present their data in a more condensed, color-coded, heirarchical format.";
             label2.Text = "Upcoming Development";
             textBoxFuture.Text = "- Color Selection Menus \r\n- Filter tree node list \r\n- Print to report \r\n- Data Grid View";

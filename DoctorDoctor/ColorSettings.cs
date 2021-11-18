@@ -85,6 +85,7 @@ namespace DoctorDoctor
         public void SaveColorSettings()
         {
             string appFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\DoctorDoctor\";
+
             if (!Directory.Exists(appFolder))
             {
                 Directory.CreateDirectory(appFolder);
@@ -95,6 +96,8 @@ namespace DoctorDoctor
         public static ColorSettings GetColorSettings()
         {
             string configPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\DoctorDoctor\colorconfig.xml";
+            string configFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\DoctorDoctor\";
+            Directory.CreateDirectory(configFolder);
             ColorSettings cs = new ColorSettings();
             if (File.Exists(configPath))
             {

@@ -10,6 +10,18 @@
     <ApplicationIcon>doctor.ico</ApplicationIcon>
     <PackageIcon>doctor.png</PackageIcon>
     <SignAssembly>True</SignAssembly>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Copyright>Copyright (C) 2021, Ben Fisher, All Rights Reserved</Copyright>
+    <Description>A ProjNet XML report viewer.</Description>
+    <Platforms>AnyCPU;x64</Platforms>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>True</Optimize>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Optimize>True</Optimize>
   </PropertyGroup>
 
   <ItemGroup>

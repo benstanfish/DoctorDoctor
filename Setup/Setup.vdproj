@@ -3,7 +3,7 @@
 "VSVersion" = "3:800"
 "ProjectType" = "8:{978C614F-708E-4E1A-B201-565925725DBA}"
 "IsWebType" = "8:FALSE"
-"ProjectName" = "8:Setup"
+"ProjectName" = "8:DoctorViewer"
 "LanguageId" = "3:1033"
 "CodePage" = "3:1252"
 "UILanguageId" = "3:1033"
@@ -15,13 +15,13 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_65E0694EF8E34973ABD5AD494D1EFF59"
+        "MsmKey" = "8:_3F7D51940B304882B8F8ACD68A6AF993"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_C477CEC7BEE341D6B00F4491C2F9AF2F"
+        "MsmKey" = "8:_E80057490135403E9475D9B2FA575840"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -50,6 +50,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
         "Release"
@@ -74,6 +82,24 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.NetCore.CoreRuntime.6.0.x64"
+                    {
+                    "Name" = "8:.NET Runtime 6.0.0 (x64)"
+                    "ProductCode" = "8:Microsoft.NetCore.CoreRuntime.6.0.x64"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.NetCore.CoreRuntime.6.0.x86"
+                    {
+                    "Name" = "8:.NET Runtime 6.0.0 (x86)"
+                    "ProductCode" = "8:Microsoft.NetCore.CoreRuntime.6.0.x86"
+                    }
+                }
             }
         }
     }
@@ -106,7 +132,7 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C477CEC7BEE341D6B00F4491C2F9AF2F"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3F7D51940B304882B8F8ACD68A6AF993"
             {
             "SourcePath" = "8:..\\..\\..\\..\\Downloads\\doctor.ico"
             "TargetName" = "8:doctor.ico"
@@ -181,26 +207,26 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Setup"
-        "ProductCode" = "8:{DA903068-7062-49EB-B922-2B5DC8934514}"
-        "PackageCode" = "8:{E8C599C3-617A-42A3-8224-5A2CA52BC43F}"
+        "ProductName" = "8:DoctorDoctor"
+        "ProductCode" = "8:{6112A22A-16F2-4A78-9EB2-C2CA72D16E9D}"
+        "PackageCode" = "8:{E44D5A06-44BD-4FE5-BFAA-328FF3D0B38A}"
         "UpgradeCode" = "8:{51615105-231D-47E7-86EF-25E527D180EF}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
-        "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "InstallAllUsers" = "11:TRUE"
+        "ProductVersion" = "8:1.1.3"
         "Manufacturer" = "8:DoctorDoctor"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:Setup"
+        "Title" = "8:DoctorDoctor"
         "Subject" = "8:"
         "ARPCONTACT" = "8:DoctorDoctor"
-        "Keywords" = "8:"
-        "ARPCOMMENTS" = "8:"
+        "Keywords" = "8:DoctorDoctor"
+        "ARPCOMMENTS" = "8:DrChecksViewer"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:"
+        "ARPPRODUCTICON" = "8:_3F7D51940B304882B8F8ACD68A6AF993"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -303,32 +329,32 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_57B4DADAED3A4531B32DA4C5864B908C"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_53F2F84FB7A74E0BA89657A164A4313C"
             {
             "Name" = "8:DoctorDoctor"
             "Arguments" = "8:"
-            "Description" = "8:"
+            "Description" = "8:DrChecks Viewer"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_65E0694EF8E34973ABD5AD494D1EFF59"
+            "Target" = "8:_E80057490135403E9475D9B2FA575840"
             "Folder" = "8:_743BE6E4F4134C71A7186A0F00D35137"
             "WorkingFolder" = "8:_57D5DDBB06514990A8DE443FDFC2008C"
-            "Icon" = "8:_C477CEC7BEE341D6B00F4491C2F9AF2F"
+            "Icon" = "8:_3F7D51940B304882B8F8ACD68A6AF993"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C541EF118B734E5F8C86CBC872AF8AC6"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_D5D690110E584E00930C796DB2C54AC1"
             {
             "Name" = "8:DoctorDoctor"
             "Arguments" = "8:"
-            "Description" = "8:"
+            "Description" = "8:DrChecks Viewer"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_65E0694EF8E34973ABD5AD494D1EFF59"
+            "Target" = "8:_E80057490135403E9475D9B2FA575840"
             "Folder" = "8:_2AD8B0D4616A4E56A614398EA7AB5275"
             "WorkingFolder" = "8:_57D5DDBB06514990A8DE443FDFC2008C"
-            "Icon" = "8:_C477CEC7BEE341D6B00F4491C2F9AF2F"
+            "Icon" = "8:_3F7D51940B304882B8F8ACD68A6AF993"
             "Feature" = "8:"
             }
         }
@@ -730,7 +756,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_65E0694EF8E34973ABD5AD494D1EFF59"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E80057490135403E9475D9B2FA575840"
             {
             "SourcePath" = "8:..\\DoctorDoctor\\obj\\Release\\net6.0-windows\\apphost.exe"
             "TargetName" = "8:"

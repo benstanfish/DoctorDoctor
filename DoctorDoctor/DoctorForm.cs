@@ -39,8 +39,7 @@ namespace DoctorDoctor
                 //Load treeview with comments as children to discipline nodes
                 TreeNode node = new TreeNode(cmt.Id.ToString());
                 treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes.Add(node);
-                //if(cmt.Status.ToLower() != "open")
-                //    node.ForeColor = cs.openComment;
+
                 switch (cmt.Status.ToLower())
                 {
                     case "closed":
@@ -54,8 +53,6 @@ namespace DoctorDoctor
                 foreach (Evaluation evaluation in cmt.Evaluations)
                 {
                     treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes[treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes.IndexOf(node)].Nodes.Add(evaluation.Id.ToString(), evaluation.Name);
-                    //if(evaluation.Status.ToLower() == "concur")
-                    //    treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes[treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes.IndexOf(node)].Nodes[evaluation.Id.ToString()].BackColor = cs.concur;
                     Color temp = Color.Empty;
                     switch (evaluation.Status.ToLower())
                     {
@@ -77,8 +74,6 @@ namespace DoctorDoctor
                 foreach (Backcheck backcheck in cmt.Backchecks)
                 {
                     treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes[treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes.IndexOf(node)].Nodes.Add(backcheck.Id.ToString(), backcheck.Name);
-                    //if (backcheck.Status.ToLower() == "concur")
-                    //    treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes[treeView1.Nodes[Disciplines.IndexOf(cmt.Discipline.ToString())].Nodes.IndexOf(node)].Nodes[backcheck.Id.ToString()].BackColor = cs.concur;
                     Color temp = Color.Empty;
                     switch (backcheck.Status.ToLower())
                     {
@@ -165,7 +160,6 @@ namespace DoctorDoctor
 
         private void button3_Click(object sender, EventArgs e)
         {
-            
             treeView1.ExpandAll();
         }
 
@@ -181,7 +175,6 @@ namespace DoctorDoctor
 
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            
             e.Node.Expand();
         }
 
@@ -193,16 +186,20 @@ namespace DoctorDoctor
             // to the listBoxProjects.
 
             string testPath = Helper.GetFolderPath();
-            List<string> validPaths = Helper.ValidProjNetFiles(testPath);
-            List<ProjNet> loadPNs = new List<ProjNet>();
-            foreach(string st in validPaths)
+            if (!string.IsNullOrEmpty(testPath))
             {
-                loadPNs.Add(ProjNet.ReadFromFile(st));
+                List<string> validPaths = Helper.ValidProjNetFiles(testPath);
+                List<ProjNet> loadPNs = new List<ProjNet>();
+                foreach (string st in validPaths)
+                {
+                    loadPNs.Add(ProjNet.ReadFromFile(st));
+                }
+                colorCodingToolStripMenuItem.Enabled = true;
+                pnList = loadPNs;
+                listBoxProjects.DataSource = pnList;
+                listBoxProjects.Refresh();
             }
-            colorCodingToolStripMenuItem.Enabled = true;
-            pnList = loadPNs;
-            listBoxProjects.DataSource = pnList;
-            listBoxProjects.Refresh();
+
         }
 
         private void colorsToolStripMenuItem_Click(object sender, EventArgs e)
